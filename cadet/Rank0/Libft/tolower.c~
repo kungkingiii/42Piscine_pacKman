@@ -15,10 +15,10 @@ int main(void)
 
 	printf("%c\n", ft_tolower(c));
 	printf("%c\n", ft_tolower(b));
-	printf("my: %c\n", ft_tolower('G'));
-	printf("my: %c\n", ft_tolower('R'));
+	printf("%c\n", ft_tolower('P'));
+	printf("%c\n", ft_tolower('s'));
 	printf("isctype:\n%c\n", tolower(c));
 	printf("%c\n", tolower(b));
-	printf("ori: %c\n", tolower('G'));
-	printf("ori: %c", tolower('R'));
+	printf("%c\n", tolower('P'));
+	printf("%c", tolower('s'));
 }
