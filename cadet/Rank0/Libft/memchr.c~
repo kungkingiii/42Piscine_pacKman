@@ -22,7 +22,7 @@ int main(void)
 	char *mystr = "I want you to fooind ome";
 	char *mystr2 = "I want you to fooind ome";
 	char schar = '\0';
-	char nchar = 'f';
+	char nchar = 'u';
 
 	
 
