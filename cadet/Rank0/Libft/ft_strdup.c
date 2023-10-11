@@ -1,38 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 22:26:39 by Hallykmr          #+#    #+#             */
-/*   Updated: 2023/07/28 15:52:25 by chongsen         ###   ########.fr       */
+/*   Created: 2023/07/31 10:11:37 by chongsen          #+#    #+#             */
+/*   Updated: 2023/08/02 15:11:35 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
-void ft_prnc(char *str)
+size_t ft_strlen(const char *s)
 {
 	int i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
-		write(1, &str[i], 1);
 		i++;
 	}
-	write(1, "\n,", 1);
+	return i;
 }
 
-int main(int argc, char **argv)
+char *ft_strdup(const char *str)
 {
+	char *ptr;
 	int i;
 
-	i = 1;
-	while (i < argc)
+	ptr = (char *)malloc(ft_strlen(str) * sizeof(char));
+	if (!ptr)
+		return (0);
+	i = 0;
+	while (str[i] != '\0')
 	{
-		ft_prnc(argv[i]);
+		ptr[i] = str[i];
 		i++;
 	}
+	ptr[i] = '\0';
+	return (ptr);
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	printf("%s\n", ft_strdup("sad bvb"));
+	printf("%s\n", strdup("sad bvb"));
 }

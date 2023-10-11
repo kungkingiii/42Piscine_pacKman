@@ -17,9 +17,9 @@ void *ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 int main(void)
 {
 	char myarr[5];
-	char ccarr[7];
+	char ccarr[5];
 	char fnarr[5] = "abcd";
-	char ccsrcarr[7] = "abcdett";
+	char ccsrcarr[5] = "abcd";
 	int myint[6];
 	int myint2[6];
 	int fnint[6] = {1, 2, 3, 4, 5, 6};
@@ -37,7 +37,7 @@ int main(void)
 	printf("myfn: %s\n", myarr);
 	printf("orgfn: %s\n", ccarr);
 	
-	for(int i = 0; i < 7; i++)
+	for(int i = 0; i < 6; i++)
 	{
 		printf("myint: %d\n", myint[i]);
 		printf("orgint: %d\n", myint2[i]);
