@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 17:29:21 by chongsen          #+#    #+#             */
-/*   Updated: 2023/07/26 12:57:37 by chongsen         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 int ft_count(char *str, int i, int count, int toi)
 {
@@ -65,12 +54,4 @@ int ft_atoi(const char *str)
 			return (toi);
 	}
 	return (toi);
-}
-
-#include <stdio.h>
-#include <stdlib.h>
-int main()
-{
-	printf("%d\n", atoi("  ---1234  gg77"));
-	printf("%d\n", ft_atoi("   ---1234  gg77"));
 }

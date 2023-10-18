@@ -1,5 +1,3 @@
-
-#include <stdio.h>
 #include <stdlib.h>
 
 int numlen(int n, int base)
@@ -62,9 +60,4 @@ char *ft_itoa(int n)
 		return (0);
 	strgen(s, len, n);
 	return s;
-}
-
-int main(void)
-{
-	printf("string: %s\n", ft_itoa(  	-4000));
 }

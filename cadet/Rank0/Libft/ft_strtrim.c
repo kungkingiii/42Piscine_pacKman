@@ -1,17 +1,5 @@
 #include <stdlib.h>
-#include <stdio.h>
-
-size_t ft_strlen(const char *s)
-{
-    int i;
-
-    i = 0;
-    while (s[i] != '\0')
-    {
-        i++;
-    }
-    return i;
-}
+#include <libft.h>
 
 static int ft_set(char c, char const *set)
 {
@@ -48,24 +36,4 @@ char *ft_strtrim(char const *s1, char const *set)
         str[i++] = s1[start++];
     str[i] = 0;
     return (str);
-}
-
-#include <stdio.h>
-int main()
-{
-    char *strs = "hoodggg";
-    char *str2 = "ohg";
-    printf("%s\n", ft_strtrim(strs, str2));
-
-    char *res = ft_strtrim(strs, str2);
-    size_t i = 0;
-    while (i <= ft_strlen(res))
-    {
-        if (res[i] == '\0')
-        {
-            printf("i: %i gg: %c\n", i, res[i]);
-        }
-        printf("i: %i c: %c\n", i, res[i]);
-        i++;
-    }
 }

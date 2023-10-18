@@ -1,17 +1,5 @@
 #include <stdlib.h>
-
-size_t ft_strlen(const char *s)
-{
-    int i;
-
-    i = 0;
-    while (s[i] != '\0')
-    {
-        i++;
-    }
-    return i;
-}
-
+#include <libft.h>
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
     size_t slen;
@@ -35,10 +23,4 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
     }
     ptr[i] = '\0';
     return (ptr);
-}
-
-#include <stdio.h>
-int main()
-{
-    printf("%s\n", ft_substr("shhhjh", 2, 5));
 }
