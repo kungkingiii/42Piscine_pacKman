@@ -66,11 +66,3 @@ int ft_atoi(const char *str)
 	}
 	return (toi);
 }
-
-#include <stdio.h>
-#include <stdlib.h>
-int main()
-{
-	printf("%d\n", atoi("  ---1234  gg77"));
-	printf("%d\n", ft_atoi("   ---1234  gg77"));
-}

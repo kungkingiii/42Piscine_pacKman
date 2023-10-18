@@ -36,9 +36,3 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
     ptr[i] = '\0';
     return (ptr);
 }
-
-#include <stdio.h>
-int main()
-{
-    printf("%s\n", ft_substr("shhhjh", 2, 5));
-}

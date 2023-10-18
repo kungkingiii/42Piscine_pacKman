@@ -132,21 +132,3 @@ char **ft_split(char const *s, char c)
     }
     return arr;
 }
-
-int main()
-{
-    char *strs = ",";
-    char s = ',';
-
-    char **res = ft_split(strs, s);
-    size_t i = 0;
-    while (i < 3)
-    {
-
-        // printf(" s: %s\n", res);
-
-        printf("i: %i s: %s\n", i, res[i]);
-
-        i++;
-    }
-}

@@ -53,24 +53,3 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (0);
 }
-
-#include <stdio.h>
-#include <string.h>
-int main()
-{
-	const char *haystack = "This is a sample string for testing.";
-	const char *needle = "sample";
-
-	char *result = ft_strnstr(haystack, needle, 15);
-
-	if (result != NULL)
-	{
-		printf("Found substring: %s\n", result);
-	}
-	else
-	{
-		printf("Substring not found.\n");
-	}
-
-	return 0;
-}

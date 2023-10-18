@@ -63,8 +63,3 @@ char *ft_itoa(int n)
 	strgen(s, len, n);
 	return s;
 }
-
-int main(void)
-{
-	printf("string: %s\n", ft_itoa(  	-4000));
-}

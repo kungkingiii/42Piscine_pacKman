@@ -1,7 +1,4 @@
-#include <fcntl.h>
-#include <stdio.h>
 #include <unistd.h>
-
 void ft_checknbr(int nb, int fd)
 {
     char b;
@@ -34,23 +31,4 @@ void ft_putnbr_fd(int n, int fd)
         n *= -1;
     }
     ft_checknbr(n, fd);
-}
-
-int main()
-{
-
-    int file_descriptor = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-
-    if (file_descriptor == -1)
-    {
-        perror("Error opening file");
-        return 1;
-    }
-
-    ft_putnbr_fd(12345, file_descriptor);
-    ft_putnbr_fd(-255, file_descriptor);
-
-    close(file_descriptor);
-
-    return 0;
 }

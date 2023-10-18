@@ -49,23 +49,3 @@ char *ft_strtrim(char const *s1, char const *set)
     str[i] = 0;
     return (str);
 }
-
-#include <stdio.h>
-int main()
-{
-    char *strs = "hoodggg";
-    char *str2 = "ohg";
-    printf("%s\n", ft_strtrim(strs, str2));
-
-    char *res = ft_strtrim(strs, str2);
-    size_t i = 0;
-    while (i <= ft_strlen(res))
-    {
-        if (res[i] == '\0')
-        {
-            printf("i: %i gg: %c\n", i, res[i]);
-        }
-        printf("i: %i c: %c\n", i, res[i]);
-        i++;
-    }
-}

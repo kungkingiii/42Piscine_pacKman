@@ -58,23 +58,3 @@ char *ft_strjoin(char const *s1, char const *s2)
 	str[len] = '\0';
 	return (str);
 }
-
-#include <stdio.h>
-int main()
-{
-	char *strs = "good";
-	char *str2 = "morning";
-	printf("%s\n", ft_strjoin(strs, str2));
-
-	char *res = ft_strjoin(strs, str2);
-	size_t i = 0;
-	while (i <= ft_strlen(res))
-	{
-		if (res[i] == '\0')
-		{
-			printf("i: %i gg: %c\n", i, res[i]);
-		}
-		printf("i: %i c: %c\n", i, res[i]);
-		i++;
-	}
-}

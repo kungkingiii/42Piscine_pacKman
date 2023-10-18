@@ -45,19 +45,3 @@ size_t ft_strlcat(char *dest, const char *src, size_t size)
 	dest[l1] = '\0';
 	return (is);
 }
-
-#include <stdio.h>
-#include <string.h>
-int main(void)
-{
-	char str1[40] = "Hello,hi";
-	char str2[] = "World! myfriend";
-	// char str3[40] = "Hello,hi";
-	// char str4[] = "World! myfriend";
-	unsigned int size;
-	size = 50;
-	printf("%d\n", ft_strlcat(str1, str2, size));
-	// printf("%d\n", strlcat(str3, str4, size));
-	printf("%s\n", str1);
-	// printf("%s\n", str3);
-}
