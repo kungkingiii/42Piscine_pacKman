@@ -1,4 +1,5 @@
 #include <unistd.h>
+
 void ft_checknbr(int nb, int fd)
 {
     char b;

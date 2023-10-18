@@ -1,29 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 10:55:12 by chongsen          #+#    #+#             */
-/*   Updated: 2023/08/02 15:14:01 by chongsen         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdlib.h>
-#include <stdio.h>
-
-size_t ft_strlen(const char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return i;
-}
+#include "libft.h"
 
 size_t ft_strcpy(char *dest, const char *src, size_t size)
 {

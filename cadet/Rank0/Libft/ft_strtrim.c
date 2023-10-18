@@ -1,17 +1,5 @@
 #include <stdlib.h>
-#include <stdio.h>
-
-size_t ft_strlen(const char *s)
-{
-    int i;
-
-    i = 0;
-    while (s[i] != '\0')
-    {
-        i++;
-    }
-    return i;
-}
+#include "libft.h"
 
 static int ft_set(char c, char const *set)
 {

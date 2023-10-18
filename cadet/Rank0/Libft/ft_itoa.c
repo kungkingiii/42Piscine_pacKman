@@ -1,5 +1,3 @@
-
-#include <stdio.h>
 #include <stdlib.h>
 
 int numlen(int n, int base)

@@ -1,8 +1,5 @@
-typedef struct s_list
-{
-    void *content;
-    struct s_list *next;
-} t_list;
+#include <stdlib.h>
+#include "libft.h"
 
 void ft_lstdelone(t_list *lst, void (*del)(void *))
 {
