@@ -1,50 +1,59 @@
-#include <stdlib.h>
-#include <stdarg.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printptr.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/02 20:07:13 by Hallykmr          #+#    #+#             */
+/*   Updated: 2024/01/03 00:37:48 by Hallykmr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
-#include <stdint.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
-int ft_ptr_len(uintptr_t num)
+int	ft_ptr_len(uintptr_t num)
 {
-    int len;
+	int	len;
 
-    len = 0;
-    while (num != 0)
-    {
-        len++;
-        num = num / 16;
-    }
-    return (len);
+	len = 0;
+	while (num != 0)
+	{
+		len++;
+		num = num / 16;
+	}
+	return (len);
 }
 
-void ft_put_ptr(uintptr_t num)
+void	ft_put_ptr(uintptr_t num)
 {
-    if (num >= 16)
-    {
-        ft_put_ptr(num / 16);
-        ft_put_ptr(num % 16);
-    }
-    else
-    {
-        if (num <= 9)
-            ft_putchar(num + '0');
-        else
-            ft_putchar(num - 10 + 'A');
-    }
+	if (num >= 16)
+	{
+		ft_put_ptr(num / 16);
+		ft_put_ptr(num % 16);
+	}
+	else
+	{
+		if (num <= 9)
+			ft_putchar(num + '0');
+		else
+			ft_putchar(num - 10 + 'a');
+	}
 }
 
-int ft_putptr(unsigned long long ptr)
+int	ft_putptr(unsigned long long ptr)
 {
-    int print_length;
+	int	len;
 
-    print_length = 0;
-    print_length += write(1, "00", 2);
-    if (ptr == 0)
-        print_length += write(1, "0", 1);
-    else
-    {
-        ft_put_ptr(ptr);
-        print_length += ft_ptr_len(ptr);
-    }
-    return (print_length);
+	len = 0;
+	len += write(1, "0x", 2);
+	if (ptr == 0)
+		len += write(1, "0", 1);
+	else
+	{
+		ft_put_ptr(ptr);
+		len += ft_ptr_len(ptr);
+	}
+	return (len);
 }
