@@ -6,21 +6,22 @@
 /*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:33:32 by Hallykmr          #+#    #+#             */
-/*   Updated: 2024/01/03 00:39:49 by Hallykmr         ###   ########.fr       */
+/*   Updated: 2024/01/03 02:13:02 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "ft_printf.h"
 
 int	count_hex(int n)
 {
-	int	count;
+	int				count;
+	unsigned int	nbr;
 
 	count = 0;
-	while (n > 0)
+	nbr = n;
+	while (nbr != 0)
 	{
-		n = n / 16;
+		nbr = nbr / 16;
 		count++;
 	}
 	return (count);
@@ -44,7 +45,9 @@ char	*dec_to_hex(unsigned int n, char f, int hexlen)
 	char	*s;
 
 	i = hexlen - 1;
-	s = (char *)malloc((hexlen) * sizeof(char));
+	s = calloc(hexlen + 1, sizeof(char));
+	if (!s)
+		return (0);
 	while (i >= 0)
 	{
 		if (n > 0)
@@ -63,15 +66,14 @@ int	ft_puthex_int(unsigned int n, char f)
 	int		hexlen;
 	char	*hex;
 	int		ret;
-	int		res;
 
 	ret = 0;
 	hexlen = count_hex(n);
 	hex = dec_to_hex(n, f, hexlen);
-	res = ft_putstr(hex);
-	if (res == -1)
-		return (-1);
-	ret = res;
+	ft_putstr(hex);
+	ret = hexlen;
 	free(hex);
+	if (n == 0)
+		ret += ft_putchar('0');
 	return (ret);
 }
