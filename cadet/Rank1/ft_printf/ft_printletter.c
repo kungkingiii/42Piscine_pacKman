@@ -22,9 +22,3 @@ int ft_putstr(const char *str)
     }
     return (i);
 }
-
-int ft_putpercent(void)
-{
-    write(1, "%", 1);
-    return (1);
-}
