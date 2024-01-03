@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printhex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:33:32 by Hallykmr          #+#    #+#             */
-/*   Updated: 2024/01/03 02:13:02 by Hallykmr         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:45:50 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*dec_to_hex(unsigned int n, char f, int hexlen)
 	char	*s;
 
 	i = hexlen - 1;
-	s = calloc(hexlen + 1, sizeof(char));
+	s = ft_calloc(hexlen + 1, sizeof(char));
 	if (!s)
 		return (0);
 	while (i >= 0)
@@ -66,13 +66,18 @@ int	ft_puthex_int(unsigned int n, char f)
 	int		hexlen;
 	char	*hex;
 	int		ret;
+	int		tmp;
 
 	ret = 0;
 	hexlen = count_hex(n);
 	hex = dec_to_hex(n, f, hexlen);
-	ft_putstr(hex);
-	ret = hexlen;
+	if (hex == NULL)
+		return (-1);
+	tmp = ft_putstr(hex);
 	free(hex);
+	if (tmp == -1)
+		return (-1);
+	ret = hexlen;
 	if (n == 0)
 		ret += ft_putchar('0');
 	return (ret);

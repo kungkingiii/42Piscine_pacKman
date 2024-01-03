@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printnbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 23:47:52 by Hallykmr          #+#    #+#             */
-/*   Updated: 2024/01/03 00:28:49 by Hallykmr         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:38:45 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ int	ft_putint(int n)
 	int		tmp;
 
 	len = 0;
+	if (n == 0)
+		return (write (1, "0", 1));
 	num = ft_itoa(n);
+	if (num == NULL)
+		return (-1);
 	tmp = ft_putstr(num);
+	free(num);
 	if (tmp == -1)
 		return (-1);
 	len = tmp;
-	free(num);
 	return (len);
 }
 
@@ -73,6 +77,8 @@ int	ft_putunsigned_int(unsigned int n)
 	else
 	{
 		num = ft_uitoa(n);
+		if (num == NULL)
+			return (-1);
 		plen += ft_putstr(num);
 		free(num);
 	}

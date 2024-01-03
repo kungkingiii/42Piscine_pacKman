@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printptr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 20:07:13 by Hallykmr          #+#    #+#             */
-/*   Updated: 2024/01/03 00:37:48 by Hallykmr         ###   ########.fr       */
+/*   Updated: 2024/01/03 14:44:54 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,13 @@ void	ft_put_ptr(uintptr_t num)
 int	ft_putptr(unsigned long long ptr)
 {
 	int	len;
+	int	tmp;
 
 	len = 0;
-	len += write(1, "0x", 2);
+	tmp = (write(1, "0x", 2));
+	if (tmp == -1)
+		return (-1);
+	len += tmp;
 	if (ptr == 0)
 		len += write(1, "0", 1);
 	else

@@ -6,21 +6,24 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:06:50 by chongsen          #+#    #+#             */
-/*   Updated: 2023/10/22 15:07:06 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:00:52 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	*ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
+	unsigned char	*i;
+	size_t			j;
 
-	i = 0;
-	while (i < n)
+	i = s;
+	j = 0;
+	if (n == 0)
+		return ;
+	while (j < n)
 	{
-		((unsigned char *)s)[i] = 0;
-		i++;
+		i[j] = 0;
+		j++;
 	}
-	return (s);
 }
