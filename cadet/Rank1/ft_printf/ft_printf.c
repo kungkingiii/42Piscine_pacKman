@@ -12,16 +12,16 @@
 
 #include "ft_printf.h"
 
-int	ft_putpercent(void)
+int ft_putpercent(void)
 {
 	if (write(1, "%", 1) == -1)
 		return (-1);
 	return (1);
 }
 
-int	ft_check_form(const char str, va_list arg)
+int ft_check_form(const char str, va_list arg)
 {
-	int	count;
+	int count;
 
 	count = 0;
 	if (str == 'c')
@@ -41,12 +41,12 @@ int	ft_check_form(const char str, va_list arg)
 	return (count);
 }
 
-int	ft_printf(const char *str, ...)
+int ft_printf(const char *str, ...)
 {
-	int		res;
-	int		i;
-	int		tmp;
-	va_list	arg;
+	int res;
+	int i;
+	int tmp;
+	va_list arg;
 
 	res = 0;
 	i = 0;
