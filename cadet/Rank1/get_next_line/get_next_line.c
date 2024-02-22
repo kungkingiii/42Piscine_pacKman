@@ -12,6 +12,11 @@
 
 #include <fcntl.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdlib.h>
+
+#define BUFFER_SIZE 3
 
 typedef struct s_da
 {
@@ -23,12 +28,65 @@ typedef struct s_da
 	int error_join;
 } t_dat;
 
+size_t ft_strlen(const char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+char *check_next_line(char *text, int bytes, int fd)
+{
+
+	int i;
+	char *line_text;
+
+	bytes = read(fd, text, BUFFER_SIZE);
+	line_text = (char *)malloc(sizeof(char) * ft_strlen(text));
+
+	i = 0;
+	while (text[i])
+	{
+		if (text[i] == '\n')
+		{
+			line_text[i] == '\0';
+			return (line_text);
+		}
+		line_text[i] = text[i];
+		i++;
+	}
+	printf("ggg%s, ddd%s\n", text, line_text);
+	bytes = read(fd, text, BUFFER_SIZE);
+
+	return (line_text);
+}
+
 char *get_next_line(int fd)
 {
-	static t_dat data;
+	// static t_dat data;
+	static char *text;
+	int bytes;
+	// static char buffer[5];
+	// ssize_t bytes_read = read(fd, buffer, BUFFER_SIZE);
+	// if (bytes_read == -1)
+	// {
+	// 	perror("read");
+	// 	close(fd);
+	// 	return buffer;
+	// }
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
+	text = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+
+	check_next_line(text, bytes, fd);
+
+	return text;
 }
 
 int main(void)
@@ -38,6 +96,13 @@ int main(void)
 
 	fd = open("mytext.txt", O_RDONLY);
 	s = get_next_line(fd);
+	printf("%s\n", s);
+	s = get_next_line(fd);
+	printf("%s\n", s);
+	s = get_next_line(fd);
+	printf("%s\n", s);
+	s = get_next_line(fd);
+	printf("%s\n", s);
 	//	while (s)
 	//	{
 	// printf("%s", s);
