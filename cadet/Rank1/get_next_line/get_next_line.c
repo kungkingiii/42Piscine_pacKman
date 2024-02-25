@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:35:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/25 19:06:46 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/02/26 00:24:37 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 #define BUFFER_SIZE 3
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -29,7 +29,6 @@ size_t ft_strlen(const char *s)
 	}
 	return (i);
 }
-
 
 static size_t	ft_strcpy(char *dest, const char *src, size_t size)
 {
@@ -85,26 +84,27 @@ char	*ft_strdup(const char *str)
 	return (ptr);
 }
 
-void move_text(char *dup_text, char *text, int dest)
+void	move_text(char *dup_text, char *text, int dest)
 {
-	int i;
+	int	i;
 
 	i = 0;
-		while (dup_text[dest])
-		{	
-			text[i] = dup_text[dest];
-			printf("this is dup: %c text%c\n",text[i],dup_text[i]);
-			i++;
-			dest++;
-		}
+	while (dup_text[dest])
+	{	
+		text[i] = dup_text[dest];
+		printf("this is dup: %c text%c\n", text[i], dup_text[i]);
+		i++;
+		dest++;
+	}
+	text[i] = '\0';
 }
 
-char	*check_next_line(char *text, int bytes, int fd,char *result)
+char	*check_next_line(char *text, int bytes, int fd, char *result)
 {
 	int		i;
 	char	*line_text;
-	char *dup_text;
-	char *new_text;
+	char	*dup_text;
+	char	*new_text;
 
 	bytes = read(fd, text, BUFFER_SIZE);
 	dup_text = ft_strdup(text);
@@ -133,41 +133,89 @@ char	*check_next_line(char *text, int bytes, int fd,char *result)
 		i++;
 	}
 	new_text = ft_strjoin(result, line_text);
-	new_text = check_next_line(text,bytes,fd ,new_text);
+	new_text = check_next_line(text, bytes, fd, new_text);
 	return (new_text);
 }
 
-
-
-char *get_next_line(int fd)
+char *find_next(char *text, int bytes, int fd, char *dup_text, int dest)
 {
-	static char *text;
-	char *read_text;
-	char *result;
-	int bytes;
-	int len;
-	char *newww;
+	char	*str;
+	int		i;
+	char	*newww;
+
+	i = 0;
+	while (dup_text[dest])
+	{
+		if (dup_text[dest] == '\n')
+		{
+			move_text(dup_text, text, dest);
+			return (str);
+		}
+		if (dup_text[dest] == '\0')
+		{
+			text = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+			newww = check_next_line(text, bytes, fd, str);
+			return (newww);
+		}
+		str[i] = text[dest];
+	}
+	return (str);
+}
+
+char *check_line(char *text, int bytes, int fd)
+{
+	int		i;
+	int		a;
+	char	*str;
+	char	*dup_text;
+
+	i = 0;
+	a = 0;
+	dup_text = ft_strdup(text);
+	while (dup_text[i])
+	{
+		if (dup_text[i] == '\n')
+		{
+			str = find_next(text, bytes, fd, dup_text, i + 1);
+			break ;
+		}
+		i++;
+	}
+	return (str);
+} 
+
+char	*get_next_line(int fd)
+{
+	static char	*text;
+	char		*result;
+	int			bytes;
+	int			count;
+	char		*newww;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-
-		printf("this is text: %s\n",text);
-
-
-	text = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-
-
-	result = "";
-	 newww = check_next_line(text,bytes,fd ,result);
-	return newww;
+	printf("this is text: %s\n",text);
+	if (text)
+	{
+		newww = check_line(text, bytes, fd);
+	}
+	else
+	{		
+		text = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		result = "";
+		newww = check_next_line(text, bytes, fd, result);
+	}
+	return (newww);
 }
 
-int main(void)
+int	main(void)
 {
-	int fd;
-	char *s;
+	int		fd;
+	char	*s;
 
 	fd = open("mytext.txt", O_RDONLY);
+	s = get_next_line(fd);
+	printf("%s", s);
 	s = get_next_line(fd);
 	printf("%s", s);
 	s = get_next_line(fd);
