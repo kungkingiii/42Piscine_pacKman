@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:35:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/25 17:47:53 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:06:46 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdlib.h>
 
 #define BUFFER_SIZE 3
-
 
 size_t ft_strlen(const char *s)
 {
@@ -31,10 +30,7 @@ size_t ft_strlen(const char *s)
 	return (i);
 }
 
-// char *read_line(char *text, int bytes, int fd)
-// {
-// 	bytes = read(fd, text, BUFFER_SIZE);
-// }
+
 static size_t	ft_strcpy(char *dest, const char *src, size_t size)
 {
 	size_t	n;
@@ -69,73 +65,82 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
+char	*ft_strdup(const char *str)
+{
+	char	*ptr;
+	int		len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(str);
+	ptr = (char *)malloc(len + 1 * sizeof(char));
+	if (!ptr)
+		return (0);
+	while (str[i] != '\0')
+	{
+		ptr[i] = str[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
+
+void move_text(char *dup_text, char *text, int dest)
+{
+	int i;
+
+	i = 0;
+		while (dup_text[dest])
+		{	
+			text[i] = dup_text[dest];
+			printf("this is dup: %c text%c\n",text[i],dup_text[i]);
+			i++;
+			dest++;
+		}
+}
+
 char	*check_next_line(char *text, int bytes, int fd,char *result)
 {
 	int		i;
 	char	*line_text;
+	char *dup_text;
 	char *new_text;
 
-
-
 	bytes = read(fd, text, BUFFER_SIZE);
-	line_text = (char *)malloc(sizeof(char) * ft_strlen(text) + 1);
+	dup_text = ft_strdup(text);
+	line_text = (char *)malloc(sizeof(char) * ft_strlen(dup_text) + 1);
 	if (!line_text)
 	{
 		return (0);
 	}
-		// printf("stringgg cc:%s\n", text);
-
 	i = 0;
-	while (text[i])
+	while (dup_text[i])
 	{
-		// printf("stringgg cc:%c rr%c\n", line_text[i], text[i]);
-		if (text[i] == '\n')
+		if (dup_text[i] == '\n')
 		{
 			line_text[i] = '\n';
 			line_text[i + 1] = '\0';
-			// printf("stringgg ee:%s\n", line_text);
 			new_text = ft_strjoin(result, line_text);
-			// printf("stringgg :%s\n", new_text);stringgg
-
+			if(dup_text[i+1] == '\0')
+			{
+				text = NULL;
+				printf("texttt%s",text);
+			}
+				// move_text(dup_text,text,i + 1);
 			return (new_text);
 		}
-		line_text[i] = text[i];
-		// printf("stringgg aa:%s gg%c\n", line_text, text[i]);
+		line_text[i] = dup_text[i];
 		i++;
 	}
-	// printf("stringgg before:%s\n", result);
-
 	new_text = ft_strjoin(result, line_text);
-
 	new_text = check_next_line(text,bytes,fd ,new_text);
-		// printf("stringgg after:%s\n", new_text);stringgg
-	// printf("stringgg rraarraa:%c\n", line_text, text[i]);
-				// free(line_text);
 	return (new_text);
 }
 
-// char *check_text(char *text, int bytes, int fd ,char *read_text)
-// {
-// 	char *result;
-// 	int len;
 
-// 	result = read_text;
-// 	read_text = check_next_line(text, bytes, fd);
-// 				printf("read_text jaa :%s\n" , read_text);
-// 	ft_strcat(result, read_text);
-// 	len = ft_strlen(read_text);	
-// 	if (read_text[len] != '\n')
-// 	{
-// 		printf("resultttts :%s\n", result);
-// 		result = check_text(text,bytes,fd ,result);
-// 	}	i = 0;
-
-// 	return result;
-// }
 
 char *get_next_line(int fd)
 {
-	// static t_dat data;
 	static char *text;
 	char *read_text;
 	char *result;
@@ -143,49 +148,17 @@ char *get_next_line(int fd)
 	int len;
 	char *newww;
 
-
-
-
-	// static char buffer[5];
-	// ssize_t bytes_read = read(fd, buffer, BUFFER_SIZE);
-	// if (bytes_read == -1)
-
-	// {
-	// 	perror("read");
-	// 	close(fd);
-	// 	return buffer;
-	// }
-
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
+
+		printf("this is text: %s\n",text);
+
+
 	text = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 
+
 	result = "";
-
 	 newww = check_next_line(text,bytes,fd ,result);
-
-	// read_text = check_next_line(text, bytes, fd);
-
-	// len = ft_strlen(read_text);
-
-	// // ft_strcat(result, read_text);
-
-//  read_text = check_next_line(text, bytes, fd);
-	// result = read_text;
-	// // printf("result jaa :%s\n", result);
-
-	// if (read_text[len] != '\n')
-	//  {
-	// 	read_text = check_next_line(text, bytes, fd);
-	// 			// printf("read_text jaa :%s\n" , read_text);
-	// 	// printf(" result naaa: %s\n ", result);
-
-
-		// printf("resultttts :%s\n", result);
-	// 	ft_strcat(result, read_text);
-			// result = check_text(text,bytes,fd ,read_text);
-	//  }
-	// newww[strlen(newww)] = '\n';newu
 	return newww;
 }
 
@@ -197,25 +170,9 @@ int main(void)
 	fd = open("mytext.txt", O_RDONLY);
 	s = get_next_line(fd);
 	printf("%s", s);
-	// s = get_next_line(fd);
-	// printf("re%s\n", s);
-	// s = get_next_line(fd);
-	// printf("re%s\n", s);
-	// s = get_next_line(fd);
-	// printf("re%s\n", s);
-	// s = get_next_line(fd);
-	// printf("re%s\n", s);
-
-	//	while (s)
-	//	{
-	// printf("%s", s);
-	// free(s);
-	//		s = get_next_line(fd);
-	//	}
-	//	free(s);
-
-	// s = get_next_line(fd);
-	// printf("%s", s);
-	// free(s);
+	s = get_next_line(fd);
+	printf("%s", s);
+	s = get_next_line(fd);
+	printf("%s", s);
 	return (0);
 }
