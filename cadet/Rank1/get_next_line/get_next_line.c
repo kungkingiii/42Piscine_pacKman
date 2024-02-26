@@ -6,93 +6,26 @@
 /*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:35:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/26 01:06:57 by Hallykmr         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:48:19 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#include "get_next_line.h"
+// #include "get_next_line_utils.c"
 
-#define BUFFER_SIZE 3
+// #define BUFFER_SIZE 300
 
-size_t	ft_strlen(const char *s)
+void	move_text(char *text, int dest)
 {
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-static size_t	ft_strcpy(char *dest, const char *src, size_t size)
-{
-	size_t	n;
-
-	n = 0;
-	while (src[n] != '\0')
-	{
-		dest[size] = src[n];
-		size++;
-		n++;
-	}
-	return (n);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*str;
-	size_t	len;
-	size_t	i;
-	size_t	n;
-
-	i = 0;
-	len = ft_strlen(s1) + ft_strlen(s2);
-	str = (char *)malloc(len + 1 * sizeof(char));
-	if (!str)
-	{
-		return (0);
-	}
-	n = ft_strcpy(str, s1, i);
-	ft_strcpy(str, s2, n);
-	str[len] = '\0';
-	return (str);
-}
-
-char	*ft_strdup(const char *str)
-{
-	char	*ptr;
-	int		len;
 	int		i;
+	char	*dup_text;
 
-	i = 0;
-	len = ft_strlen(str);
-	ptr = (char *)malloc(len + 1 * sizeof(char));
-	if (!ptr)
-		return (0);
-	while (str[i] != '\0')
-	{
-		ptr[i] = str[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
-
-void	move_text(char *dup_text, char *text, int dest)
-{
-	int	i;
-
+	dup_text = ft_strdup(text);
 	i = 0;
 	while (dup_text[dest])
 	{	
 		text[i] = dup_text[dest];
-		printf("this is dup: %c text%c\n", text[i], dup_text[i]);
 		i++;
 		dest++;
 	}
@@ -103,29 +36,23 @@ char	*check_next_line(char *text, int bytes, int fd, char *result)
 {
 	int		i;
 	char	*line_text;
-	char	*dup_text;
 	char	*new_text;
 
 	bytes = read(fd, text, BUFFER_SIZE);
-	printf("readdd: %s\n", text);
-	dup_text = ft_strdup(text);
-	line_text = (char *)malloc(sizeof(char) * ft_strlen(dup_text) + 1);
-	if (!line_text)
-	{
-		return (0);
-	}
+	line_text = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!line_text || bytes == -1 || !text)
+		return (NULL);
 	i = 0;
-	while (dup_text[i])
+	while (text[i])
 	{
-		if (dup_text[i] == '\n')
+		if (text[i] == '\n')
 		{
 			line_text[i] = '\n';
 			line_text[i + 1] = '\0';
 			new_text = ft_strjoin(result, line_text);
-				// move_text(dup_text,text,i + 1);
 			return (new_text);
 		}
-		line_text[i] = dup_text[i];
+		line_text[i] = text[i];
 		i++;
 	}
 	new_text = ft_strjoin(result, line_text);
@@ -133,32 +60,36 @@ char	*check_next_line(char *text, int bytes, int fd, char *result)
 	return (new_text);
 }
 
-char *find_next(char *text, int bytes, int fd, char *dup_text, int dest)
+char	*find_next(char *text, int bytes, int fd, int dest)
 {
 	char	*str;
 	int		i;
-	char	*newww;
 
 	i = 0;
-	while (dup_text[dest])
+	str = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	while (text[dest])
 	{
-		printf("dupppp: %c\n", text[dest]);
-		if (dup_text[dest] == '\n' && dup_text[dest + 1] != '\0')
+		if (text[dest] == '\n' && text[dest + 1] != '\0')
 		{
-			move_text(dup_text, text, dest);
+			// printf("this is text 2: %s str: %s dest: %c", text, str, text[dest] );
+			move_text(text, dest);
+			// printf("strrrr: %s",str);
+			str[i] = '\n';
+			str[i + 1] = '\0';
 			return (str);
 		}
+		// printf("this is text 3: %s text:%c\n",str, text[dest]);
 		str[i] = text[dest];
 		i++;
 		dest++;
 	}
 	str[i] = '\0';
-	if (str)
+	// printf("strrrr3: %s", str);
+	if (str && str[i + 1] != '\n')
 	{
-		printf("strrr: %s\n", str);
-		text = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		newww = check_next_line(text, bytes, fd, str);
-		return (newww);
+					// printf("strrrr2: %s",str);
+		str = check_next_line(text, bytes, fd, str);
+		return (str);
 	}
 	return (str);
 }
@@ -166,64 +97,64 @@ char *find_next(char *text, int bytes, int fd, char *dup_text, int dest)
 char	*check_line(char *text, int bytes, int fd)
 {
 	int		i;
-	int		a;
 	char	*str;
-	char	*dup_text;
 
 	i = 0;
-	a = 0;
-	dup_text = ft_strdup(text);
-	while (dup_text[i])
+	while (text[i])
 	{
-		if (dup_text[i] == '\n' && dup_text[i + 1] != '\0')
+		if (text[i] == '\n' && text[i + 1] != '\0')
 		{
-				printf("this is mm: %c\n", dup_text[i + 1] );
-			str = find_next(text, bytes, fd, dup_text, i + 1);
-			break ;
+			// printf("this is text : %s", text);
+			str = find_next(text, bytes, fd, i + 1);
+			return (str);
 		}
 		i++;
 	}
 	return (NULL);
-} 
+}
 
 char	*get_next_line(int fd)
 {
 	static char	*text;
 	char		*result;
+	char		*first_text;
 	int			bytes;
-	int			count;
-	static char		*newww;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	result = NULL;
+	// result = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	bytes = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	printf("this is text: %s newww: %s\n", text, newww);
 	if (text)
-	{
-		newww = check_line(text, bytes, fd);
-	}
-	printf("this is neww: %s\n", newww);
-	if (!newww)
+		result = check_line(text, bytes, fd);
+	if (!result)
 	{		
 		text = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		result = "";
-		newww = check_next_line(text, bytes, fd, result);
+		if (!text)
+			return (NULL);
+		first_text = "";
+		result = check_next_line(text, bytes, fd, first_text);
 	}
-	return (newww);
+	return (result);
 }
 
-int	main(void)
-{
-	int		fd;
-	char	*s;
+// int	main(void)
+// {
+// 	int		fd;
+// 	char	*s;
 
-	fd = open("mytext.txt", O_RDONLY);
-	s = get_next_line(fd);
-	printf("%s", s);
-	s = get_next_line(fd);
-	printf("%s", s);
-	s = get_next_line(fd);
-	printf("%s", s);
-	// s = get_next_line(fd);
-	// printf("%s", s);
-	return (0);
-}
+// 	fd = open("mytext.txt", O_RDONLY);
+// 	s = get_next_line(fd);
+// 	printf("re: %s", s);
+// 	s = get_next_line(fd);
+// 	printf("re: %s", s);
+// 	s = get_next_line(fd);
+// 	printf("re: %s", s);
+// 	s = get_next_line(fd);
+// 	printf("re: %s", s);
+// 	s = get_next_line(fd);
+// 	printf("re: %s", s);
+// 	// s = get_next_line(fd);
+// 	// printf("%s", s);
+// 	return (0);
+// }
