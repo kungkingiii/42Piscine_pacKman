@@ -5,144 +5,101 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 17:35:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/26 15:48:19 by Hallykmr         ###   ########.fr       */
+/*   Created: 2021/10/05 09:56:49 by prossi            #+#    #+#             */
+/*   Updated: 2024/02/27 00:15:51 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include "get_next_line.h"
+#include "get_next_line.h"	
 // #include "get_next_line_utils.c"
+#include <fcntl.h>
+#include <stdio.h>
 
 // #define BUFFER_SIZE 300
-
-void	move_text(char *text, int dest)
+char	*check_end_line(const char *s, int i)
 {
-	int		i;
+	while (*s)
+	{
+		if (*s == i)
+			return ((char *)s);
+		s++;
+	}
+	return (0);
+}
+
+static char	*read_line(int fd, char *text, char *keeptext)
+{
+	int		read_line;
 	char	*dup_text;
 
-	dup_text = ft_strdup(text);
-	i = 0;
-	while (dup_text[dest])
-	{	
-		text[i] = dup_text[dest];
-		i++;
-		dest++;
+	read_line = 1;
+	while (read_line != '\0')
+	{
+		read_line = read(fd, text, BUFFER_SIZE);
+		if (read_line == -1)
+			return (0);
+		else if (read_line == 0)
+			break ;
+		text[read_line] = '\0';
+		if (!keeptext)
+			keeptext = ft_strdup("");
+		dup_text = keeptext;
+		keeptext = ft_strjoin(dup_text, text);
+		free(dup_text);
+		dup_text = NULL;
+		if (check_end_line (text, '\n'))
+			break ;
 	}
-	text[i] = '\0';
+	return (keeptext);
 }
 
-char	*check_next_line(char *text, int bytes, int fd, char *result)
+static char	*check_next_line(char *line)
 {
-	int		i;
-	char	*line_text;
-	char	*new_text;
+	size_t	count;
+	char	*keeptext;
 
-	bytes = read(fd, text, BUFFER_SIZE);
-	line_text = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!line_text || bytes == -1 || !text)
-		return (NULL);
-	i = 0;
-	while (text[i])
+	count = 0;
+	while (line[count] != '\n' && line[count] != '\0')
+		count++;
+	if (line[count] == '\0' || line[1] == '\0')
+		return (0);
+	keeptext = ft_substr(line, count + 1, ft_strlen(line) - count);
+	if (*keeptext == '\0')
 	{
-		if (text[i] == '\n')
-		{
-			line_text[i] = '\n';
-			line_text[i + 1] = '\0';
-			new_text = ft_strjoin(result, line_text);
-			return (new_text);
-		}
-		line_text[i] = text[i];
-		i++;
+		free(keeptext);
+		keeptext = NULL;
 	}
-	new_text = ft_strjoin(result, line_text);
-	new_text = check_next_line(text, bytes, fd, new_text);
-	return (new_text);
-}
-
-char	*find_next(char *text, int bytes, int fd, int dest)
-{
-	char	*str;
-	int		i;
-
-	i = 0;
-	str = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	while (text[dest])
-	{
-		if (text[dest] == '\n' && text[dest + 1] != '\0')
-		{
-			// printf("this is text 2: %s str: %s dest: %c", text, str, text[dest] );
-			move_text(text, dest);
-			// printf("strrrr: %s",str);
-			str[i] = '\n';
-			str[i + 1] = '\0';
-			return (str);
-		}
-		// printf("this is text 3: %s text:%c\n",str, text[dest]);
-		str[i] = text[dest];
-		i++;
-		dest++;
-	}
-	str[i] = '\0';
-	// printf("strrrr3: %s", str);
-	if (str && str[i + 1] != '\n')
-	{
-					// printf("strrrr2: %s",str);
-		str = check_next_line(text, bytes, fd, str);
-		return (str);
-	}
-	return (str);
-}
-
-char	*check_line(char *text, int bytes, int fd)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	while (text[i])
-	{
-		if (text[i] == '\n' && text[i + 1] != '\0')
-		{
-			// printf("this is text : %s", text);
-			str = find_next(text, bytes, fd, i + 1);
-			return (str);
-		}
-		i++;
-	}
-	return (NULL);
+	line[count + 1] = '\0';
+	return (keeptext);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*text;
-	char		*result;
-	char		*first_text;
-	int			bytes;
+	static char	*keeptext;
+	char		*line;
+	char		*text;
 
-	result = NULL;
-	// result = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	bytes = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	text = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!text)
+		return (0);
+	line = read_line(fd, text, keeptext);
+	free(text);
+	text = NULL;
+	if (!line)
 		return (NULL);
-	if (text)
-		result = check_line(text, bytes, fd);
-	if (!result)
-	{		
-		text = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (!text)
-			return (NULL);
-		first_text = "";
-		result = check_next_line(text, bytes, fd, first_text);
-	}
-	return (result);
+	keeptext = check_next_line(line);
+	return (line);
 }
+
 
 // int	main(void)
 // {
 // 	int		fd;
 // 	char	*s;
 
+// 	// fd = open("../files/41_with_nl", O_RDONLY);
 // 	fd = open("mytext.txt", O_RDONLY);
 // 	s = get_next_line(fd);
 // 	printf("re: %s", s);

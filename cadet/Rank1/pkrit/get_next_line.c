@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 15:07:06 by kdanchal          #+#    #+#             */
-/*   Updated: 2024/01/04 16:58:06 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/02/26 23:32:17 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "get_next_line_utils.c"
+// #include "get_next_line_utils.c"
 
 char *gnl5_result2(t_dat *data)
 {
@@ -136,27 +136,27 @@ char *get_next_line(int fd)
 #include <fcntl.h>
 #include <stdio.h>
 
-int main(void)
-{
-	int fd;
-	char *s;
+// int main(void)
+// {
+// 	int fd;
+// 	char *s;
 
-	fd = open("test.txt", O_RDONLY);
-	// s = get_next_line(fd);
-	s = "gg";
-	while (s)
-	{
-		printf("%s", s);
-		free(s);
-		s = get_next_line(fd);
-	}
-	free(s);
+// 	fd = open("test.txt", O_RDONLY);
+// 	// s = get_next_line(fd);
+// 	s = "gg";
+// 	while (s)
+// 	{
+// 		printf("%s", s);
+// 		free(s);
+// 		s = get_next_line(fd);
+// 	}
+// 	free(s);
 
-	// s = get_next_line(fd);
-	// printf("%s", s);
-	// free(s);
-	// s = get_next_line(fd);
-	// printf("%s", s);
-	// free(s);
-	return (0);
-}
+// 	// s = get_next_line(fd);
+// 	// printf("%s", s);
+// 	// free(s);
+// 	// s = get_next_line(fd);
+// 	// printf("%s", s);
+// 	// free(s);
+// 	return (0);
+// }
