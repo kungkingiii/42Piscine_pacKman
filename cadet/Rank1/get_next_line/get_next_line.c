@@ -6,7 +6,7 @@
 /*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:49 by prossi            #+#    #+#             */
-/*   Updated: 2024/02/27 00:15:51 by Hallykmr         ###   ########.fr       */
+/*   Updated: 2024/02/27 00:25:52 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*check_end_line(const char *s, int i)
 	return (0);
 }
 
-static char	*read_line(int fd, char *text, char *keeptext)
+char	*read_line(int fd, char *text, char *keeptext)
 {
 	int		read_line;
 	char	*dup_text;
@@ -53,7 +53,7 @@ static char	*read_line(int fd, char *text, char *keeptext)
 	return (keeptext);
 }
 
-static char	*check_next_line(char *line)
+char	*check_next_line(char *line)
 {
 	size_t	count;
 	char	*keeptext;
