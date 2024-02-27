@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:35:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/26 23:52:57 by Hallykmr         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:08:30 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,20 +144,15 @@ int	main(void)
 {
 	int		fd;
 	char	*s;
-
-	// fd = open("../files/41_with_nl", O_RDONLY);
+	
 	fd = open("mytext.txt", O_RDONLY);
 	s = get_next_line(fd);
-	printf("re: %s", s);
-	s = get_next_line(fd);
-	printf("re: %s", s);
-	s = get_next_line(fd);
-	printf("re: %s", s);
-	s = get_next_line(fd);
-	printf("re: %s", s);
-	s = get_next_line(fd);
-	printf("re: %s", s);
-	// s = get_next_line(fd);
-	// printf("%s", s);
+	while (s)
+	{
+		printf("%s", s);
+		free(s);
+		s = get_next_line(fd);
+	}
+	free(s);
 	return (0);
 }
