@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:49 by prossi            #+#    #+#             */
-/*   Updated: 2024/02/27 20:44:58 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/02/27 20:56:45 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ char	*read_line(int fd, char *text, char **keeptext_ref)
 	while (read_line != '\0')
 	{
 		read_line = read(fd, text, BUFFER_SIZE);
-		if (read_line == -1)
+		if (read_line == -1 )
 		{
 			// printf("		free : %p\n",keeptext);
-			// free(keeptext);
+			free(keeptext);
 			*keeptext_ref = NULL;
 			return (0);
 		}
 		else if (read_line == 0)
 		{
-			tmp = keeptext;
-			keeptext = ft_strjoin(tmp, text);
-			free(tmp);
+			// tmp = keeptext;
+			// keeptext = ft_strjoin(tmp, text);
+			// free(tmp);
 			*keeptext_ref = NULL;
 			break ;
 		}
