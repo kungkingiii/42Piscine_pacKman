@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:35:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/28 10:33:33 by Hallykmr         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:04:31 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "get_next_line_utils.c"
 
 // #define BUFFER_SIZE 300
+
 
 void	move_text(char *text, int dest)
 {
@@ -105,7 +106,7 @@ char	*check_line(char *text, int bytes, int fd)
 	{
 		if (text[i] == '\n' && text[i + 1] != '\0')
 		{
-			printf("this is text : %s\n", text);
+			// printf("this is text : %s\n", text);
 			str = find_next(text, bytes, fd, i + 1);
 			return (str);
 		}
