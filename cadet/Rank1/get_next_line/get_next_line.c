@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:49 by prossi            #+#    #+#             */
-/*   Updated: 2024/02/27 20:56:45 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/02/28 10:40:28 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ char	*read_line(int fd, char *text, char **keeptext_ref)
 
 	keeptext = *keeptext_ref;
 	read_line = 1;
-	while (read_line != '\0')
+	while (read_line)
 	{
 		read_line = read(fd, text, BUFFER_SIZE);
+		// printf("		free : %d\n",read_line);
 		if (read_line == -1 )
 		{
 			// printf("		free : %p\n",keeptext);

@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../../francinette/tests/get_next_line/gnlTester/files"
+		},
+		{
+			"path": "../../../../ex2"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"unistd.h": "c",
+			"stdint.h": "c",
+			"__locale": "c",
+			"get_next_line.h": "c"
+		}
+	}
+}
