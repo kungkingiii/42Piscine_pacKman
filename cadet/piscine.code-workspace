@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "../piscine"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "D:/42bangkok/cadet/ft_printf/mai"
+		},
+		{
+			"path": "D:/42bangkok/cadet/ft_printf/pkrit"
+		},
+		{
+			"path": "D:/42bangkok/push swap"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"string.h": "c",
+			"libft.h": "c",
+			"stdlib.h": "c",
+			"get_next_line.h": "c",
+			"fcntl.h": "c",
+			"stdio.h": "c"
+		}
+	}
+}
