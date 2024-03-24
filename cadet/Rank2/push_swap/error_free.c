@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utente <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 20:57:22 by utente            #+#    #+#             */
-/*   Updated: 2023/04/06 08:08:28 by utente           ###   ########.fr       */
+/*   Created: 2024/03/24 11:57:58 by chongsen          #+#    #+#             */
+/*   Updated: 2024/03/24 13:08:07 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,25 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/*
- * Ad hoc function to free the 2D array
- * created with the ft_split function
- * ATTENTION
- * You have to start from -1
- */
-void free_matrix(char **argv)
+void	free_matrix(char **argv)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (NULL == argv || NULL == *argv)
-		return;
+		return ;
 	while (argv[i])
 		free(argv[i++]);
 	free(argv - 1);
 }
 
-/*
- * Ad hoc function to free a stack
- */
-void free_stack(t_stack_node **stack)
+void	free_stack(t_stack_node **stack)
 {
-	t_stack_node *tmp;
-	t_stack_node *current;
+	t_stack_node	*tmp;
+	t_stack_node	*current;
 
 	if (NULL == stack)
-		return;
+		return ;
 	current = *stack;
 	while (current)
 	{
@@ -52,12 +43,7 @@ void free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-/*
- * Matrix starts from -1
- * because i artificially made Up
- * equal to argv
- */
-void error_free(t_stack_node **a, char **argv, bool argc_status)
+void	error_free(t_stack_node **a, char **argv, bool argc_status)
 {
 	free_stack(a);
 	if (argc_status)
@@ -66,14 +52,13 @@ void error_free(t_stack_node **a, char **argv, bool argc_status)
 	exit(1);
 }
 
-/*
- * Check if there are some syntactical mistakes
- */
-int error_syntax(char *str_nbr)
+int	error_syntax(char *str_nbr)
 {
-	if (!(*str_nbr == '+' || *str_nbr == '-' || (*str_nbr >= '0' && *str_nbr <= '9')))
+	if (!(*str_nbr == '+' || *str_nbr == '-'
+			|| (*str_nbr >= '0' && *str_nbr <= '9')))
 		return (1);
-	if ((*str_nbr == '+' || *str_nbr == '-') && !(str_nbr[1] >= '0' && str_nbr[1] <= '9'))
+	if ((*str_nbr == '+' || *str_nbr == '-')
+		&& !(str_nbr[1] >= '0' && str_nbr[1] <= '9'))
 		return (1);
 	while (*++str_nbr)
 	{
@@ -83,10 +68,7 @@ int error_syntax(char *str_nbr)
 	return (0);
 }
 
-/*
- * Loop into the stack for some repetition
- */
-int error_repetition(t_stack_node *a, int nbr)
+int	check_error_repeat(t_stack_node *a, int nbr)
 {
 	if (a == NULL)
 		return (0);

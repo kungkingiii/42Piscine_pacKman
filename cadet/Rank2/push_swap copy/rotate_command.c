@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utente <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 10:07:07 by utente            #+#    #+#             */
-/*   Updated: 2023/05/15 10:38:21 by utente           ###   ########.fr       */
+/*   Updated: 2024/03/24 10:06:28 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
- * Top node to bottom position
-*/
 static void	rotate(t_stack_node **stack)
 {
 	t_stack_node	*last_node;
@@ -29,7 +26,7 @@ static void	rotate(t_stack_node **stack)
 	(*stack)->prev = NULL;
 	last_node->next->prev = last_node;
 	last_node->next->next = NULL;
-}	
+}
 
 void	ra(t_stack_node **a, bool checker)
 {

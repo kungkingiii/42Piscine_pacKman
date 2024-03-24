@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate_command.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utente <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 10:24:35 by utente            #+#    #+#             */
-/*   Updated: 2023/05/15 10:38:28 by utente           ###   ########.fr       */
+/*   Created: 2024/03/24 12:36:06 by chongsen          #+#    #+#             */
+/*   Updated: 2024/03/24 12:36:17 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
- * Bottom to top
-*/
 static void	reverse_rotate(t_stack_node **stack)
 {
 	t_stack_node	*last;

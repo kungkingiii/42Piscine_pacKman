@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utente <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 09:42:38 by utente            #+#    #+#             */
-/*   Updated: 2023/04/05 10:54:02 by utente           ###   ########.fr       */
+/*   Updated: 2024/03/24 10:06:49 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/*
- *  atol, i need it to check eventual overflows
- *  converting every string into a long value
-*/
 static long	ft_atol(const char *str)
 {
 	long	num;

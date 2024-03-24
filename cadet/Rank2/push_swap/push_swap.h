@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utente <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 18:42:44 by utente            #+#    #+#             */
-/*   Updated: 2023/04/06 11:31:49 by utente           ###   ########.fr       */
+/*   Updated: 2024/03/24 12:17:11 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char **ft_split(char *str, char separator);
 void free_matrix(char **argv);
 void error_free(t_stack_node **a, char **argv, bool flag_argc_2);
 void free_stack(t_stack_node **stack);
-int error_repetition(t_stack_node *a, int nbr);
+int check_error_repeat(t_stack_node *a, int nbr);
 int error_syntax(char *str_nbr);
 
 // //*** Stack creation ***

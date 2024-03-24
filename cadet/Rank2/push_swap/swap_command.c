@@ -3,19 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   swap_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utente <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 09:53:41 by utente            #+#    #+#             */
-/*   Updated: 2023/05/15 10:39:35 by utente           ###   ########.fr       */
+/*   Created: 2024/03/24 12:31:58 by chongsen          #+#    #+#             */
+/*   Updated: 2024/03/24 12:32:12 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
- * ATTENTION
- * There may be only 2 nodes
-*/
 static void	swap(t_stack_node **head)
 {
 	int	len;

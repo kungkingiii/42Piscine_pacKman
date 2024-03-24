@@ -3,19 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utente <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 10:36:47 by utente            #+#    #+#             */
-/*   Updated: 2023/04/02 10:20:10 by utente           ###   ########.fr       */
+/*   Created: 2024/03/24 09:15:13 by chongsen          #+#    #+#             */
+/*   Updated: 2024/03/24 09:15:51 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
- * Push a node to the top from src to dest
- * 🚨 attention If stack empty (i.e. NULL)
-*/
 static void	push(t_stack_node **dest, t_stack_node **src)
 {
 	t_stack_node	*node_to_push;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utente <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/02 09:49:59 by utente            #+#    #+#             */
-/*   Updated: 2023/04/03 19:29:16 by utente           ###   ########.fr       */
+/*   Created: 2024/03/24 12:32:28 by chongsen          #+#    #+#             */
+/*   Updated: 2024/03/24 13:16:40 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ t_stack_node	*find_last_node(t_stack_node *head)
 	return (head);
 }
 
-/*
- * Search for the last node and append 
- * 🚨 Pay attention if the stack empty?
-*/
 void	append_node(t_stack_node **stack, int nbr)
 {
 	t_stack_node	*node;
@@ -51,9 +47,6 @@ void	append_node(t_stack_node **stack, int nbr)
 	}
 }
 
-/*
- * Find the smallest value node
-*/
 t_stack_node	*find_smallest(t_stack_node *stack)
 {
 	long			smallest;
@@ -74,10 +67,6 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 	return (smallest_node);
 }
 
-/*
- * Return the cheapest node 
- * that is already flagged
-*/
 t_stack_node	*return_cheapest(t_stack_node *stack)
 {
 	if (NULL == stack)

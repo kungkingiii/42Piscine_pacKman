@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utente <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 19:11:45 by utente            #+#    #+#             */
-/*   Updated: 2023/04/06 09:50:20 by utente           ###   ########.fr       */
+/*   Updated: 2024/03/24 10:06:42 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stddef.h>
 
-/*
- * Args at the command line are
- * spaced separated strings
-*/
 static int	count_words(char *str, char separator)
 {
 	int		count;
@@ -41,12 +37,6 @@ static int	count_words(char *str, char separator)
 	return (count);
 }
 
-/*
- * I exploit static variables
- * which are basically 
- * "Global private variables"
- * i can access it only via the get_next_word function
-*/
 static char	*get_next_word(char *str, char separator)
 {
 	static int	cursor = 0;

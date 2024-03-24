@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utente <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 19:11:45 by utente            #+#    #+#             */
-/*   Updated: 2023/04/06 09:50:20 by utente           ###   ########.fr       */
+/*   Created: 2024/03/24 12:32:56 by chongsen          #+#    #+#             */
+/*   Updated: 2024/03/24 12:35:36 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 #include <stddef.h>
 #include <stdio.h>
 
-/*
- * Args at the command line are
- * spaced separated strings
- */
-static int count_words(char *str, char separator)
+static int	count_words(char *str, char separator)
 {
-	int count;
-	bool inside_word;
+	int		count;
+	bool	inside_word;
 
 	count = 0;
 	while (*str)
@@ -42,18 +38,12 @@ static int count_words(char *str, char separator)
 	return (count);
 }
 
-/*
- * I exploit static variables
- * which are basically
- * "Global private variables"
- * i can access it only via the get_next_word function
- */
-static char *get_next_word(char *str, char separator)
+static char	*get_next_word(char *str, char separator)
 {
-	static int cursor = 0;
-	char *next_str;
-	int len;
-	int i;
+	static int	cursor = 0;
+	char		*next_str;
+	int			len;
+	int			i;
 
 	len = 0;
 	i = 0;
@@ -70,24 +60,11 @@ static char *get_next_word(char *str, char separator)
 	return (next_str);
 }
 
-/*
- * I recreate an argv in the HEAP
- *
- * +2 because i want to allocate space
- * for the "\0" Placeholder and the final NULL
- *
- * vector_strings-->[p0]-> "\0" Placeholder to mimic argv
- * 				 |->[p1]->"Hello"
- * 				 |->[p2]->"how"
- * 				 |->[p3]->"Are"
- * 				 |->[..]->"..""
- * 				 |->[NULL]
- */
-char **ft_split(char *str, char separator)
+char	**ft_split(char *str, char separator)
 {
-	int words_number;
-	char **vector_strings;
-	int i;
+	char	**vector_strings;
+	int		words_number;
+	int		i;
 
 	i = 0;
 	words_number = count_words(str, separator);
@@ -104,11 +81,10 @@ char **ft_split(char *str, char separator)
 			if (NULL == vector_strings[i])
 				return (NULL);
 			vector_strings[i++][0] = '\0';
-			continue;
+			continue ;
 		}
 		vector_strings[i++] = get_next_word(str, separator);
 	}
 	vector_strings[i] = NULL;
-	printf("this a%s ", vector_strings[2]);
 	return (vector_strings);
 }
