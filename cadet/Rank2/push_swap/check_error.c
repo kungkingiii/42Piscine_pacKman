@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_init.c                                       :+:      :+:    :+:   */
+/*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/02 09:42:38 by utente            #+#    #+#             */
-/*   Updated: 2024/03/24 12:17:11 by chongsen         ###   ########.fr       */
+/*   Created: 2024/03/24 21:59:23 by Hallykmr          #+#    #+#             */
+/*   Updated: 2024/03/24 22:16:31 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 static long	ft_atol(const char *str)
 {
@@ -42,7 +41,7 @@ static long	ft_atol(const char *str)
 	return (num * negative);
 }
 
-void	stack_init(t_stack_node **a, char **argv, bool argc_status)
+void	check_error(t_stack_node **a, char **argv, bool argc_status)
 {
 	long	nbr;
 	int		i;

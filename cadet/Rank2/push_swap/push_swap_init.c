@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 12:19:05 by chongsen          #+#    #+#             */
-/*   Updated: 2024/03/24 12:20:49 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/03/25 09:05:13 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,24 @@ void	set_current_position(t_stack_node *stack)
 	int	i;
 	int	centerline;
 
-	i = 0;
 	if (NULL == stack)
 		return ;
 	centerline = stack_len(stack) / 2;
+	i = 0;
+	// printf("this is center %d\n", centerline);
 	while (stack)
 	{
 		stack->current_position = i;
 		if (i <= centerline)
+		{
+			// printf("this is current i %d\n", stack->current_position);
 			stack->above_median = true;
+		}
 		else
+		{
 			stack->above_median = false;
+			// printf("this is current %d\n", stack->above_median);	
+		}
 		stack = stack->next;
 		++i;
 	}
@@ -46,9 +53,11 @@ static void	set_target_node(t_stack_node *a,
 	while (b)
 	{
 		best_match_index = LONG_MAX;
+		// printf("long max%ld\n", LONG_MAX);
 		current_a = a;
 		while (current_a)
 		{
+			// printf("current_a%d current_b%d\n", current_a->value, b->value);
 			if (current_a->value > b->value
 				&& current_a->value < best_match_index)
 			{
@@ -108,7 +117,9 @@ void	set_cheapest(t_stack_node *b)
 void	init_nodes(t_stack_node *a, t_stack_node *b)
 {
 	set_current_position(a);
+	// printf("this is boolean a %d\n", a->above_median);
 	set_current_position(b);
+	// printf("this is boolean b %d\n", a->above_median);
 	set_target_node(a, b);
 	set_price(a, b);
 	set_cheapest(b);

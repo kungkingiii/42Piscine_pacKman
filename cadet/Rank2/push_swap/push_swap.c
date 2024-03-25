@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 11:47:02 by utente            #+#    #+#             */
-/*   Updated: 2024/03/24 13:14:45 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/03/25 09:02:56 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	finish_rotation(t_stack_node **stack,
 {
 	while (*stack != top_node)
 	{
+		// printf("stackkk%d topnode%d\n", top_node->value,top_node->above_median);
 		if (stack_name == 'a')
 		{
 			if (top_node->above_median)
@@ -89,7 +90,7 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 		while (len_a-- > 3)
 			pb(b, a, false);
 	}
-	tiny_sort(a);
+	handle_three(a);
 	while (*b)
 	{
 		init_nodes(*a, *b);

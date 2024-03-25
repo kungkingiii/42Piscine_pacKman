@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 18:42:44 by utente            #+#    #+#             */
-/*   Updated: 2024/03/24 12:17:11 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:26:12 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int check_error_repeat(t_stack_node *a, int nbr);
 int error_syntax(char *str_nbr);
 
 // //*** Stack creation ***
-void stack_init(t_stack_node **a, char **argv, bool flag_argc_2);
+void check_error(t_stack_node **a, char **argv, bool flag_argc_2);
 void init_nodes(t_stack_node *a, t_stack_node *b);
 void set_current_position(t_stack_node *stack);
 void set_price(t_stack_node *a, t_stack_node *b);
@@ -53,12 +53,12 @@ void append_node(t_stack_node **stack, int nbr);
 t_stack_node *find_last_node(t_stack_node *head);
 t_stack_node *find_smallest(t_stack_node *stack);
 t_stack_node *return_cheapest(t_stack_node *stack);
-bool stack_sorted(t_stack_node *stack);
+bool first_is_less(t_stack_node *stack);
 int stack_len(t_stack_node *stack);
 void finish_rotation(t_stack_node **s, t_stack_node *n, char c);
 
 // //*** Algorithms ***
-void tiny_sort(t_stack_node **a);
+void handle_three(t_stack_node **a);
 void handle_five(t_stack_node **a, t_stack_node **b);
 void push_swap(t_stack_node **a, t_stack_node **b);
 

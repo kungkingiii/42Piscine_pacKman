@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 12:32:28 by chongsen          #+#    #+#             */
-/*   Updated: 2024/03/24 13:16:40 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/03/25 09:04:47 by Hallykmr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
+#include <stdio.h>
 
 t_stack_node	*find_last_node(t_stack_node *head)
 {
@@ -64,6 +65,7 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 		}
 		stack = stack->next;
 	}
+	// printf("smallest is%d\n", smallest_node->value);
 	return (smallest_node);
 }
 
