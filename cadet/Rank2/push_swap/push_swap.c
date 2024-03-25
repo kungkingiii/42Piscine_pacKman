@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 11:47:02 by utente            #+#    #+#             */
-/*   Updated: 2024/03/24 13:14:45 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:49:42 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 		while (len_a-- > 3)
 			pb(b, a, false);
 	}
-	tiny_sort(a);
+	handle_three(a);
 	while (*b)
 	{
 		init_nodes(*a, *b);

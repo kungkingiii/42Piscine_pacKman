@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 09:15:13 by chongsen          #+#    #+#             */
-/*   Updated: 2024/03/24 09:15:51 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:56:42 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 static void	push(t_stack_node **dest, t_stack_node **src)
 {
-	t_stack_node	*node_to_push;
+	t_stack_node	*int_to_put;
 
-	if (NULL == *src)
+	if (*src == NULL)
 		return ;
-	node_to_push = *src;
+	int_to_put = *src;
 	*src = (*src)->next;
 	if (*src)
 		(*src)->prev = NULL;
-	node_to_push->prev = NULL;
-	if (NULL == *dest)
+	int_to_put->prev = NULL;
+	if (*dest == NULL)
 	{
-		*dest = node_to_push;
-		node_to_push->next = NULL;
+		*dest = int_to_put;
+		int_to_put->next = NULL;
 	}
 	else
 	{
-		node_to_push->next = *dest;
-		node_to_push->next->prev = node_to_push;
-		*dest = node_to_push;
+		int_to_put->next = *dest;
+		int_to_put->next->prev = int_to_put;
+		*dest = int_to_put;
 	}
 }
 

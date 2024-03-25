@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_init.c                                       :+:      :+:    :+:   */
+/*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/02 09:42:38 by utente            #+#    #+#             */
-/*   Updated: 2024/03/24 12:17:11 by chongsen         ###   ########.fr       */
+/*   Created: 2024/03/25 11:50:32 by chongsen          #+#    #+#             */
+/*   Updated: 2024/03/25 17:48:01 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static long	ft_atol(const char *str)
 	return (num * negative);
 }
 
-void	stack_init(t_stack_node **a, char **argv, bool argc_status)
+void	check_error(t_stack_number **a, char **argv, bool argc_status)
 {
 	long	nbr;
 	int		i;
@@ -57,7 +57,7 @@ void	stack_init(t_stack_node **a, char **argv, bool argc_status)
 			error_free(a, argv, argc_status);
 		if (check_error_repeat(*a, (int)nbr))
 			error_free(a, argv, argc_status);
-		append_node(a, (int)nbr);
+		append_number(a, (int)nbr);
 		++i;
 	}
 	if (argc_status)

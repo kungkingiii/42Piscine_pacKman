@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 12:29:48 by chongsen          #+#    #+#             */
-/*   Updated: 2024/03/24 13:15:25 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:49:42 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-bool	stack_sorted(t_stack_node *stack)
+bool	first_is_less(t_stack_node *stack)
 {
 	if (stack == NULL)
 		return (1);
@@ -48,7 +48,7 @@ static	t_stack_node	*find_highest(t_stack_node *stack)
 	return (highest_node);
 }
 
-void	tiny_sort(t_stack_node **a)
+void	handle_three(t_stack_node **a)
 {
 	t_stack_node	*highest_node;
 
