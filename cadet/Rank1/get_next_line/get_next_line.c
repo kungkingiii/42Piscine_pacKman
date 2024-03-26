@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Hallykmr <Hallykmr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:49 by prossi            #+#    #+#             */
-/*   Updated: 2024/02/28 10:40:28 by Hallykmr         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:46:26 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,21 +157,21 @@ char	*get_next_line(int fd)
 }
 
 
-// int	main(void)
-// {
-//  	int	fd;
-//  	char	*s;
+int	main(void)
+{
+ 	int	fd;
+ 	char	*s;
 	
-//  	fd = open("multiple_nl.txt", O_RDONLY);
-//  	s = get_next_line(fd);
-//  	printf("%s", s);
-//  	while (s)
-//  	{
-//  		printf("%s", s);
-//  		free(s);
-//  		s = get_next_line(fd);
-//  	}
-//  	free(s);
-//  	return (0);
-//  }
+ 	fd = open("mulhhhtiple_nl.txt", O_RDONLY);
+ 	s = get_next_line(fd);
+ 	printf("%s", s);
+ 	while (s)
+ 	{
+ 		printf("%s", s);
+ 		free(s);
+ 		s = get_next_line(fd);
+ 	}
+ 	free(s);
+ 	return (0);
+ }
 
