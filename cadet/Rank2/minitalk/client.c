@@ -1,118 +1,88 @@
-// #include <stdio.h>
-// #include <signal.h>
-// #include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/03 22:39:56 by packmanich        #+#    #+#             */
+/*   Updated: 2024/04/10 00:33:25 by packmanich       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// int	main(int argc, char **argv)
-// {
-// 	// int	i;
-
-// 	// i = 0;
-// 	// if (argc != 3 || !ft_strlen(argv[2]))
-// 	// 	handle_errors("Usage : ./clinet ServerPID Message.");
-// 	// while (argv[1][i])
-// 	// {
-// 	// 	if (!ft_isdigit(argv[1][i]))
-// 	// 		handle_errors("Server PID not digit.");
-// 	// 	i++;
-// 	// }
-// 	printf("Client PID : %d\n", getpid());
-// 	// signal(SIGUSR1, action);
-// 	// signal(SIGUSR2, action);
-// 	// send_to_server(ft_atoi(argv[1]), argv[2]);
-// 	// while (1)
-// 	// 	usleep(300);
-// 	return (0);
-// }
-
-// // int	main(int argc, char **argv)
-// // {
-// // 	if (argc != 3 || !ft_str_isnumeric(argv[1]))
-// // 	{
-// // 		ft_putstr_color_fd(ANSI_COLOR_RED,
-// // 			"client: invalid arguments.\n", 2);
-// // 		ft_putstr_color_fd(ANSI_COLOR_YELLOW,
-// // 			"correct format: [./client <PID> <STR>].\n", 2);
-// // 		exit(EXIT_FAILURE);
-// // 	}
-// // 	signal(SIGUSR1, handler_sigusr);
-// // 	signal(SIGUSR2, handler_sigusr);
-// // 	send_bit(ft_atoi(argv[1]), argv[2]);
-// // 	while (1)
-// // 		pause();
-// // }
-// int	main(int argc, char	**argv)
-// {
-// 	int		pid;
-// 	char	*str;
-
-// 	if (argc != 3)
-// 		ft_printf("Please input server pid and one message argument.\n");
-// 	else
-// 	{
-// 		pid = ft_atoi(argv[1]);
-// 		str = argv[2];
-// 		sig_send_message(pid, str, ft_strlen(str));
-// 	}
-// }
-
-#include "libft/include/libft.h"
-#include "libft/include/ft_printf.h"
-#include "libft/include/get_next_line.h"
-#include <unistd.h>
+#include "./libft/ft_printf.h"
 #include <signal.h>
-#include <stdio.h>
 
-static void	action(int sig)
+static int	g_recieve_sig;
+
+void	sig_handler(int signum, siginfo_t *info, void	*context)
 {
-	if (sig == SIGUSR2)
-		ft_printf("Received sig from Server.\n");
+	static int	count;
+
+	(void)context;
+	(void)info;
+	(void)signum;
+	g_recieve_sig = 1;
+	if (signum == SIGUSR2)
+		count++;
+	else if (signum == SIGUSR1)
+		ft_printf("%d bytes received\n", count / 8);
 }
 
-static void	send_to_server(int pid, char *str)
+int	char_to_bin(char c, int pid)
 {
-	int		i;
-	char	c;
+	int	bit;
+	int	bit_idx;
 
-	while (*str)
+	bit_idx = 7;
+	while (bit_idx >= 0)
 	{
-		i = 8;
-		c = *str++;
-		while (i--)
+		bit = 0;
+		if ((c >> bit_idx) & 1)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		while (g_recieve_sig == 0)
 		{
-			if (c >> i & 1)
+			if (bit == 50)
 			{
-				if (kill(pid, SIGUSR2) == -1)
-					exit (1);
+				ft_printf("No response from server.\n");
+				exit(1);
 			}
-			else
-			{
-				if (kill(pid, SIGUSR1) == -1)
-					exit (1);
-			}
+			bit++;
 			usleep(300);
 		}
+		g_recieve_sig = 0;
+		bit_idx--;
 	}
-	exit (0);
+	return (0);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char	**argv)
 {
-	int	i;
+	int					i;
+	int					pid;
+	char				*str;
+	struct sigaction	sa;
 
-	i = 0;
-	if (argc != 3 || !ft_strlen(argv[2]))
-		handle_errors("Usage : ./clinet ServerPID Message.");
-	while (argv[1][i])
+	if (argc != 3)
 	{
-		if (!ft_isdigit(argv[1][i]))
-			handle_errors("Server PID not digit.");
+		ft_printf("need only 3 argument for send message!\n");
+		return (1);
+	}
+	pid = ft_atoi(argv[1]);
+	str = argv[2];
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART | SA_SIGINFO;
+	sa.sa_sigaction = sig_handler;
+	sigaction(SIGUSR1, &sa, 0);
+	sigaction(SIGUSR2, &sa, 0);
+	i = 0;
+	while (i < ft_strlen(str))
+	{
+		char_to_bin(str[i], pid);
 		i++;
 	}
-	ft_printf("Client PID : %d\n", getpid());
-	signal(SIGUSR1, action);
-	signal(SIGUSR2, action);
-	send_to_server(ft_atoi(argv[1]), argv[2]);
-	while (1)
-		usleep(300);
+	char_to_bin('\0', pid);
 	return (0);
 }
