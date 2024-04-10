@@ -1,12 +1,12 @@
 NAME = minitalk
 NAME_C = client
 NAME_S = server
-SRC_C = sources/client.c
-SRC_S = sources/server.c
+SRC_C = client.c
+SRC_S = server.c
 OBJ_C = $(SRC_C:.c=.o)
 OBJ_S = $(SRC_S:.c=.o)
 
-LIB = libft/libft.a
+LIB = libft/libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 REMOVE = rm -f
@@ -25,11 +25,11 @@ libft:
 	@ make -C libft/
 
 clean:
-	$(REMOVE) $(OBJ_C) $(OBJ_S) $(OBJ_C_BONUS) $(OBJ_S_BONUS)
+	$(REMOVE) $(OBJ_C) $(OBJ_S)
 	make -C libft/ clean
 
 fclean: clean
-	$(REMOVE) $(NAME_C) $(NAME_S) $(NAME_C_BONUS) $(NAME_S_BONUS)
+	$(REMOVE) $(NAME_C) $(NAME_S)
 	make -C libft/ fclean
 
 re: fclean main

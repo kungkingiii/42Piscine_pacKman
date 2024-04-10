@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 22:39:56 by packmanich        #+#    #+#             */
-/*   Updated: 2024/04/10 00:33:25 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/04/10 18:36:16 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	char_to_bin(char c, int pid)
 
 int	main(int argc, char	**argv)
 {
-	int					i;
+	size_t				i;
 	int					pid;
 	char				*str;
 	struct sigaction	sa;
