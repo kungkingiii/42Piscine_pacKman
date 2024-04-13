@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solong.h                                           :+:      :+:    :+:   */
+/*   solong.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/11 22:50:49 by packmanich        #+#    #+#             */
-/*   Updated: 2024/04/13 11:43:56 by packmanich       ###   ########.fr       */
+/*   Created: 2024/02/28 14:06:54 by bperez-a          #+#    #+#             */
+/*   Updated: 2024/03/11 15:46:06 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ typedef struct s_map
 	int			*c_x;
 	int			*c_y;
 	int			moves;
-	mlx_image_t	*wall_img;
-	mlx_image_t	*player_img;
-	mlx_image_t	*exit_img;
-	mlx_image_t	*collectible_img;
-	mlx_image_t	*floor_img;
+	mlx_image_t	*wall_image;
+	mlx_image_t	*player_image;
+	mlx_image_t	*exit_image;
+	mlx_image_t	*collectible_image;
+	mlx_image_t	*floor_image;
 	mlx_t		*mlx;
 
 }				t_map;
@@ -49,7 +49,7 @@ t_map			*handle_input(char *filepath);
 bool			check_map(char **map);
 bool			check_path(char **map);
 t_map			*make_map(char *buffer);
-void			init_images(t_map *map_data);
+void			init_textures_and_images(t_map *map_data);
 void			draw_map(t_map *map_data);
 void			handle_move(int off_x, int off_y, t_map *map_data);
 void			exit_routine(t_map *map_data);
