@@ -1,3 +1,36 @@
+NAME	:= so_long
+CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
+LIBMLX	:= ./MLX42
+
+HEADERS	:= -I ./include -I $(LIBMLX)/include
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBFT 	= libft
+LIBFT_LIB = $(LIBFT)/libft.a
+SRCS	:= $(shell find ./src -iname "*.c")
+OBJS	:= ${SRCS:.c=.o}
+
+all: libmlx $(NAME)
+
+libmlx:
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+
+$(NAME): $(OBJS) $(LIBFT_LIB) 
+	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+
+clean:
+	@rm -rf $(OBJS)
+	@rm -rf $(LIBMLX)/build
+
+fclean: clean
+	@rm -rf $(NAME)
+
+re: clean all
+
+.PHONY: all, clean, fclean, re, libmlx
+
 NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -7,44 +40,4 @@ RM = rm -f
 LIBFT = libft
 LIBFT_LIB = $(LIBFT)/libft.a
 
-# Updated source and object files for executable to reflect /src folder
-SRC_DIR = srcs
-SRC_FILES = main.c input.c move.c init.c clean.c check_map.c check_path.c make_map.c
-SRC_PATHS = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
-OBJ_DIR = obj
-OBJ_FILES = $(SRC_PATHS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-# Rule to make everything
-all: $(OBJ_DIR) $(NAME)
-
-# Creating the obj directory
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-# Compiling the project and linking with libft and mlx_linux to create the executable
-$(NAME): $(LIBFT_LIB) $(OBJ_FILES)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) -L$(LIBFT) -lft MLX42/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
-
-# Rule for making libft
-$(LIBFT_LIB):
-	$(MAKE) -C $(LIBFT)
-
-# Rule for making object files, now looks in src directory and includes header
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c solong.h
-	$(CC) $(CFLAGS) -I$(LIBFT) -c $< -o $@
-
-# Cleaning up the object files
-clean:
-	$(RM) -r $(OBJ_DIR)
-	$(MAKE) clean -C $(LIBFT)
-
-# Full clean (includes the libraries and executable)
-fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) fclean -C $(LIBFT)
-
-# Re-make everything
-re: fclean all
-
-# Prevents issues with make and filenames
-.PHONY: all clean fclean re
