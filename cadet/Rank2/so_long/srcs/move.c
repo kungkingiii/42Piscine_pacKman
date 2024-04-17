@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 07:18:14 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/03/25 11:23:09 by bperez-a         ###   ########.fr       */
+/*   Created: 2024/04/17 17:07:37 by chongsen          #+#    #+#             */
+/*   Updated: 2024/04/17 19:01:10 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	move_if_not_wall(int off_x, int off_y, t_map *map_data)
 {
 	int		x;
 	int		y;
+	char	*strmove;
+	char	*str;
 	bool	iswall;
 
 	x = map_data->player_image->instances[0].x / TILESIZE + off_x;
@@ -28,8 +30,14 @@ static void	move_if_not_wall(int off_x, int off_y, t_map *map_data)
 		map_data->player_image->instances[0].x += (TILESIZE * off_x);
 		map_data->player_image->instances[0].y += (TILESIZE * off_y);
 		map_data->moves++;
+		strmove = ft_itoa(map_data->moves);
+		if (!strmove)
+			free(strmove);
+		str = ft_strjoin(strmove, "move");
+		if (!str)
+			free(strmove);
+		map_data->mlx_i = mlx_put_string(map_data->mlx, str, 0, 0);
 		ft_printf("\rMoves: %d ", map_data->moves);
-		usleep(60000);
 	}
 }
 
@@ -47,6 +55,28 @@ static void	check_endgame(t_map *map_data)
 	if (isexit && map_data->collected == map_data->collectibles)
 	{
 		ft_printf("\nYou win in %d moves !\n", map_data->moves);
+		exit_routine(map_data);
+	}
+}
+
+static void	check_touch_enemy(t_map *map_data)
+{
+	int		x;
+	int		y;
+	int		ex;
+	int		ey;
+	bool	islose;
+
+	x = map_data->player_image->instances[0].x / TILESIZE;
+	y = map_data->player_image->instances[0].y / TILESIZE;
+	ex = map_data->enemy_image_1->instances[0].x / TILESIZE;
+	ey = map_data->enemy_image_1->instances[0].y / TILESIZE;
+	islose = false;
+	if (ex == x && ey == y)
+		islose = true;
+	if (islose)
+	{
+		ft_printf("\nYou Lose because touch enemy!!!!\n", map_data->moves);
 		exit_routine(map_data);
 	}
 }
@@ -88,4 +118,5 @@ void	handle_move(int off_x, int off_y, t_map *map_data)
 	move_if_not_wall(off_x, off_y, map_data);
 	handle_collectible(map_data);
 	check_endgame(map_data);
+	check_touch_enemy(map_data);
 }

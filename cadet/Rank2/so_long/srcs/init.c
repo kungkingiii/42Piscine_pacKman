@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 07:39:42 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/04/17 15:53:56 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:03:39 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	init_textures_and_images(t_map *map_data)
 	mlx_texture_t	*collectible_texture;
 	mlx_texture_t	*floor_texture;
 	mlx_texture_t	*enemy_texture_1;
-	mlx_texture_t	*enemy_texture_2;
 
 	wall_texture = mlx_load_png("./textures/wall.png");
 	player_texture = mlx_load_png("./textures/player.png");
@@ -28,7 +27,6 @@ void	init_textures_and_images(t_map *map_data)
 	collectible_texture = mlx_load_png("./textures/collectible.png");
 	floor_texture = mlx_load_png("./textures/floor.png");
 	enemy_texture_1 = mlx_load_png("./textures/enemy3.png");
-	enemy_texture_2 = mlx_load_png("./textures/enemy4.png");
 	map_data->wall_image = mlx_texture_to_image(map_data->mlx, wall_texture);
 	map_data->player_image = mlx_texture_to_image(map_data->mlx,
 			player_texture);
@@ -38,44 +36,44 @@ void	init_textures_and_images(t_map *map_data)
 	map_data->floor_image = mlx_texture_to_image(map_data->mlx, floor_texture);
 	map_data->enemy_image_1 = mlx_texture_to_image(map_data->mlx,
 			enemy_texture_1);
-	map_data->enemy_image_2 = mlx_texture_to_image(map_data->mlx,
-			enemy_texture_2);
 	mlx_delete_texture(wall_texture);
 	mlx_delete_texture(player_texture);
 	mlx_delete_texture(exit_texture);
 	mlx_delete_texture(collectible_texture);
 	mlx_delete_texture(floor_texture);
 	mlx_delete_texture(enemy_texture_1);
-	mlx_delete_texture(enemy_texture_2);
 }
 
-static void	draw_enemy(t_map *map_data, int i, int j, t_draw_counts *counts)
+static int	draw_enemy(t_map *map_data, int i, int j)
 {
-	int im;
-	int jm;
+	int	im;
+	int	jm;
 
 	im = i;
-	while (map_data->map[im])
+	jm = j;
+	if ((map_data->map[im + 1][jm] != 'E' && map_data->map[im + 1][jm] != 'P')
+	&& (map_data->map[im - 1][jm] != 'E' && map_data->map[im - 1][jm] != 'P')
+	&& (map_data->map[im][jm + 1] != 'E' && map_data->map[im][jm + 1] != 'P')
+	&& (map_data->map[im][jm - 1] != 'E' && map_data->map[im][jm - 1] != 'P')
+	)
 	{
-		while (map_data->map[im][jm])
-			if ((map_data->map[im + 1][jm] == 'E' || map_data->map[im + 1][jm] == 'P')
-			&& (map_data->map[im - 1][jm] == 'E' || map_data->map[im - 1][jm] == 'P')
-			&& (map_data->map[im][jm + 1] == 'E' || map_data->map[im][jm + 1] == 'P')
-			&& (map_data->map[im][jm - 1] == 'E' || map_data->map[im][jm - 1] == 'P')
-			)
-				jm++;
-			else
-			{				
-				mlx_image_to_window
-				(map_data->mlx, map_data->enemy_image_1, jm * TILESIZE, im * TILESIZE);
-				mlx_set_instance_depth(&(map_data->exit_image->instances[0]), 2);
-			}
-			im++;
+		if ((map_data->map[im + 1][jm] != '1'
+			&& map_data->map[im + 1][jm] != '1'))
+		{
+			mlx_image_to_window
+			(map_data->mlx, map_data->enemy_image_1,
+			jm * TILESIZE, im * TILESIZE);
+			mlx_set_instance_depth(&(map_data->enemy_image_1->instances[0]), 2);
+			return (1);
+		}
 	}
+	return (0);
 }
 
 static void	draw_w_f(t_map *map_data, int i, int j, t_draw_counts *counts)
 {
+	static int	check;
+
 	if (map_data->map[i][j] == '1')
 	{
 		mlx_image_to_window(map_data->mlx,
@@ -89,6 +87,8 @@ static void	draw_w_f(t_map *map_data, int i, int j, t_draw_counts *counts)
 			(map_data->mlx, map_data->floor_image, j * TILESIZE, i * TILESIZE);
 		mlx_set_instance_depth
 			(&(map_data->floor_image->instances[(*counts).fl_count++]), 1);
+		if (check == 0)
+			check = draw_enemy(map_data, i, j);
 	}
 }
 
