@@ -34,6 +34,8 @@ typedef struct s_map
 	mlx_image_t	*exit_image;
 	mlx_image_t	*collectible_image;
 	mlx_image_t	*floor_image;
+	mlx_image_t	*enemy_image_1;
+	mlx_image_t	*enemy_image_2;
 	mlx_t		*mlx;
 
 }				t_map;

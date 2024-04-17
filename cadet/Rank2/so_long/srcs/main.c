@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:05:26 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/04/17 13:41:10 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:03:57 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_hook(void *param)
 	t_map	*map_data;
 
 	map_data = (t_map *)param;
-	if (mlx_is_key_down(map_data->mlx, MLX_KEY_Q))
+	if (mlx_is_key_down(map_data->mlx, MLX_KEY_ESCAPE))
 		exit_routine(map_data);
 	else if (mlx_is_key_down(map_data->mlx, MLX_KEY_W))
 		handle_move(0, -1, map_data);
@@ -27,8 +27,6 @@ void	ft_hook(void *param)
 		handle_move(-1, 0, map_data);
 	else if (mlx_is_key_down(map_data->mlx, MLX_KEY_D))
 		handle_move(1, 0, map_data);
-	else if (mlx_is_key_down(map_data->mlx, MLX_KEY_ESCAPE))
-		exit_routine(map_data);
 }
 
 int32_t	main(int argc, char **argv)

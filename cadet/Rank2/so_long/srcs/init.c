@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 07:39:42 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/04/17 13:02:11 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:53:56 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ void	init_textures_and_images(t_map *map_data)
 	mlx_texture_t	*exit_texture;
 	mlx_texture_t	*collectible_texture;
 	mlx_texture_t	*floor_texture;
+	mlx_texture_t	*enemy_texture_1;
+	mlx_texture_t	*enemy_texture_2;
 
 	wall_texture = mlx_load_png("./textures/wall.png");
 	player_texture = mlx_load_png("./textures/player.png");
 	exit_texture = mlx_load_png("./textures/exit.png");
 	collectible_texture = mlx_load_png("./textures/collectible.png");
 	floor_texture = mlx_load_png("./textures/floor.png");
+	enemy_texture_1 = mlx_load_png("./textures/enemy3.png");
+	enemy_texture_2 = mlx_load_png("./textures/enemy4.png");
 	map_data->wall_image = mlx_texture_to_image(map_data->mlx, wall_texture);
 	map_data->player_image = mlx_texture_to_image(map_data->mlx,
 			player_texture);
@@ -32,11 +36,42 @@ void	init_textures_and_images(t_map *map_data)
 	map_data->collectible_image = mlx_texture_to_image(map_data->mlx,
 			collectible_texture);
 	map_data->floor_image = mlx_texture_to_image(map_data->mlx, floor_texture);
+	map_data->enemy_image_1 = mlx_texture_to_image(map_data->mlx,
+			enemy_texture_1);
+	map_data->enemy_image_2 = mlx_texture_to_image(map_data->mlx,
+			enemy_texture_2);
 	mlx_delete_texture(wall_texture);
 	mlx_delete_texture(player_texture);
 	mlx_delete_texture(exit_texture);
 	mlx_delete_texture(collectible_texture);
 	mlx_delete_texture(floor_texture);
+	mlx_delete_texture(enemy_texture_1);
+	mlx_delete_texture(enemy_texture_2);
+}
+
+static void	draw_enemy(t_map *map_data, int i, int j, t_draw_counts *counts)
+{
+	int im;
+	int jm;
+
+	im = i;
+	while (map_data->map[im])
+	{
+		while (map_data->map[im][jm])
+			if ((map_data->map[im + 1][jm] == 'E' || map_data->map[im + 1][jm] == 'P')
+			&& (map_data->map[im - 1][jm] == 'E' || map_data->map[im - 1][jm] == 'P')
+			&& (map_data->map[im][jm + 1] == 'E' || map_data->map[im][jm + 1] == 'P')
+			&& (map_data->map[im][jm - 1] == 'E' || map_data->map[im][jm - 1] == 'P')
+			)
+				jm++;
+			else
+			{				
+				mlx_image_to_window
+				(map_data->mlx, map_data->enemy_image_1, jm * TILESIZE, im * TILESIZE);
+				mlx_set_instance_depth(&(map_data->exit_image->instances[0]), 2);
+			}
+			im++;
+	}
 }
 
 static void	draw_w_f(t_map *map_data, int i, int j, t_draw_counts *counts)
