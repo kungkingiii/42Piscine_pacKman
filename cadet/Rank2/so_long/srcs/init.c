@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 07:39:42 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/04/13 13:37:33 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/04/17 13:02:11 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	init_textures_and_images(t_map *map_data)
 	mlx_texture_t	*collectible_texture;
 	mlx_texture_t	*floor_texture;
 
-	wall_texture = mlx_load_png("./image/wall.png");
-	player_texture = mlx_load_png("./image/player.png");
-	exit_texture = mlx_load_png("./image/exit.png");
-	collectible_texture = mlx_load_png("./image/collectible.png");
-	floor_texture = mlx_load_png("./image/floor.png");
+	wall_texture = mlx_load_png("./textures/wall.png");
+	player_texture = mlx_load_png("./textures/player.png");
+	exit_texture = mlx_load_png("./textures/exit.png");
+	collectible_texture = mlx_load_png("./textures/collectible.png");
+	floor_texture = mlx_load_png("./textures/floor.png");
 	map_data->wall_image = mlx_texture_to_image(map_data->mlx, wall_texture);
 	map_data->player_image = mlx_texture_to_image(map_data->mlx,
 			player_texture);

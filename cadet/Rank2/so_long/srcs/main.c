@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:05:26 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/04/13 13:26:05 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/04/17 13:41:10 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_hook(void *param)
 		handle_move(-1, 0, map_data);
 	else if (mlx_is_key_down(map_data->mlx, MLX_KEY_D))
 		handle_move(1, 0, map_data);
+	else if (mlx_is_key_down(map_data->mlx, MLX_KEY_ESCAPE))
+		exit_routine(map_data);
 }
 
 int32_t	main(int argc, char **argv)
@@ -46,7 +48,7 @@ int32_t	main(int argc, char **argv)
 	}
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	map_data->mlx = mlx_init(TILESIZE * map_data->cols,
-			TILESIZE * map_data->rows, "solong", true);
+			TILESIZE * map_data->rows, "so_long", true);
 	init_textures_and_images(map_data);
 	draw_map(map_data);
 	mlx_loop_hook(map_data->mlx, ft_hook, map_data);
