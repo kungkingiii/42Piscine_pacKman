@@ -9,7 +9,7 @@ LIBFT_LIB = $(LIBFT)/libft.a
 
 # Updated source and object files for executable to reflect /src folder
 SRC_DIR = srcs
-SRC_FILES = main.c input.c move.c init.c clean.c check_map.c check_path.c make_map.c
+SRC_FILES = main.c input.c move.c init.c clean.c check_map.c check_path.c make_map.c draw_map.c
 SRC_PATHS = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 OBJ_DIR = obj
 OBJ_FILES = $(SRC_PATHS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

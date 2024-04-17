@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:07:37 by chongsen          #+#    #+#             */
-/*   Updated: 2024/04/17 19:01:10 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:14:21 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	move_if_not_wall(int off_x, int off_y, t_map *map_data)
 		if (!strmove)
 			free(strmove);
 		str = ft_strjoin(strmove, "move");
-		if (!str)
+		if (!strmove)
 			free(strmove);
 		map_data->mlx_i = mlx_put_string(map_data->mlx, str, 0, 0);
 		ft_printf("\rMoves: %d ", map_data->moves);
