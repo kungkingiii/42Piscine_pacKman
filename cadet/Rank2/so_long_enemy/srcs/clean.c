@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:06:46 by chongsen          #+#    #+#             */
-/*   Updated: 2024/04/17 17:06:49 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:11:06 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	exit_routine(t_map *map_data)
 	mlx_delete_image(map_data->mlx, map_data->exit_image);
 	mlx_delete_image(map_data->mlx, map_data->floor_image);
 	mlx_delete_image(map_data->mlx, map_data->collectible_image);
+	mlx_delete_image(map_data->mlx, map_data->enemy_image_1);
 	mlx_terminate(map_data->mlx);
 	free(map_data);
 	exit(EXIT_SUCCESS);

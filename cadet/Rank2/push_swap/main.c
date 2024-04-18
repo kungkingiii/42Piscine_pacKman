@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 09:09:23 by chongsen          #+#    #+#             */
-/*   Updated: 2024/03/25 17:16:03 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:49:03 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,3 @@ int	main(int argc, char **argv)
 	}
 	free_stack(&a);
 }
-
-bool just

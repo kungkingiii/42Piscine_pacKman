@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:35:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/18 17:35:43 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/18 18:14:05 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,7 +333,7 @@ int main(void)
 	printf("%s\n", s);
 	s = get_next_line(fd);
 	printf("%s\n", s);
-		s = get_next_line(fd);
+	s = get_next_line(fd);
 	printf("%s\n", s);
 	//	while (s)
 	//	{

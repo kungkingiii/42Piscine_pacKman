@@ -6,7 +6,7 @@
 /*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:07:37 by chongsen          #+#    #+#             */
-/*   Updated: 2024/04/17 19:14:21 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:20:29 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	move_if_not_wall(int off_x, int off_y, t_map *map_data)
 {
 	int		x;
 	int		y;
-	char	*strmove;
-	char	*str;
+	// char	*strmove;
+	// char	*str;
 	bool	iswall;
 
 	x = map_data->player_image->instances[0].x / TILESIZE + off_x;
@@ -30,13 +30,13 @@ static void	move_if_not_wall(int off_x, int off_y, t_map *map_data)
 		map_data->player_image->instances[0].x += (TILESIZE * off_x);
 		map_data->player_image->instances[0].y += (TILESIZE * off_y);
 		map_data->moves++;
-		strmove = ft_itoa(map_data->moves);
-		if (!strmove)
-			free(strmove);
-		str = ft_strjoin(strmove, "move");
-		if (!strmove)
-			free(strmove);
-		map_data->mlx_i = mlx_put_string(map_data->mlx, str, 0, 0);
+		// strmove = ft_itoa(map_data->moves);
+		// if (!strmove)
+		// 	free(strmove);
+		// str = ft_strjoin(strmove, "move");
+		// if (!strmove)
+		// 	free(strmove);
+		// map_data->mlx_i = mlx_put_string(map_data->mlx, str, 0, 0);
 		ft_printf("\rMoves: %d ", map_data->moves);
 	}
 }
@@ -76,7 +76,7 @@ static void	check_touch_enemy(t_map *map_data)
 		islose = true;
 	if (islose)
 	{
-		ft_printf("\nYou Lose because touch enemy!!!!\n", map_data->moves);
+		ft_printf("\nYou Lose because touch enemy!!!!\n");
 		exit_routine(map_data);
 	}
 }

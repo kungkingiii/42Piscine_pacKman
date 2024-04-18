@@ -21,21 +21,25 @@
 
 typedef struct s_map
 {
-	char		**map;
-	int			rows;
-	int			cols;
-	int			collectibles;
-	int			collected;
-	int			*c_x;
-	int			*c_y;
-	int			moves;
-	mlx_image_t	*wall_image;
-	mlx_image_t	*player_image;
-	mlx_image_t	*exit_image;
-	mlx_image_t	*collectible_image;
-	mlx_image_t	*floor_image;
-	mlx_image_t	*enemy_image_1;
-	mlx_image_t	*enemy_image_2;
+	char			**map;
+	int				rows;
+	int				cols;
+	int				collectibles;
+	int				collected;
+	int				*c_x;
+	int				*c_y;
+	int				moves;
+	mlx_image_t		*wall_image;
+	mlx_image_t		*player_image;
+	mlx_image_t		*exit_image;
+	mlx_image_t		*collectible_image;
+	mlx_image_t		*floor_image;
+	mlx_image_t		*enemy_image_1;
+	mlx_texture_t	*wall_texture;
+	mlx_texture_t	*player_texture;
+	mlx_texture_t	*exit_texture;
+	mlx_texture_t	*collectible_texture;
+	mlx_texture_t	*floor_texture;
 	mlx_t		*mlx;
 
 }				t_map;

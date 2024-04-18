@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_mouse.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/01/01 23:20:13 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/06/29 15:34:25 by lde-la-h      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_mouse.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/01 23:20:13 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/04/18 13:54:21 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void mlx_mouse_hook(mlx_t* mlx, mlx_mousefunc func, void* param)
 	mlxctx->mouse_hook.param = param;
 	glfwSetMouseButtonCallback(mlx->window, mlx_mouse_cb);
 }
-
+Cursor
 void mlx_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param)
 {
 	MLX_NONNULL(mlx);
