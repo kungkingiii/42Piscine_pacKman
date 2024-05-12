@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:38:31 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/04/18 13:18:25 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:31:05 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_map	*handle_input(char *filepath)
 	fd = open(filepath, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("Error: can't create map\n");
+		ft_printf("Error: invalid file\n");
 		exit(EXIT_FAILURE);
 	}
 	buffer = malloc(100000);

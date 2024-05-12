@@ -3,44 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:18:48 by chongsen          #+#    #+#             */
-/*   Updated: 2024/04/18 14:18:53 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:24:50 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../solong.h"
 
-static int	draw_enemy(t_map *map_data, int i, int j)
-{
-	int	im;
-	int	jm;
+// static int	draw_enemy(t_map *map_data, int i, int j)
+// {
+// 	int	im;
+// 	int	jm;
 
-	im = i;
-	jm = j;
-	if ((map_data->map[im + 1][jm] != 'E' && map_data->map[im + 1][jm] != 'P')
-	&& (map_data->map[im - 1][jm] != 'E' && map_data->map[im - 1][jm] != 'P')
-	&& (map_data->map[im][jm + 1] != 'E' && map_data->map[im][jm + 1] != 'P')
-	&& (map_data->map[im][jm - 1] != 'E' && map_data->map[im][jm - 1] != 'P')
-	)
-	{
-		if ((map_data->map[im + 1][jm] != '1'
-			&& map_data->map[im + 1][jm] != '1'))
-		{
-			mlx_image_to_window
-			(map_data->mlx, map_data->enemy_image_1,
-			jm * TILESIZE, im * TILESIZE);
-			mlx_set_instance_depth(&(map_data->enemy_image_1->instances[0]), 2);
-			return (1);
-		}
-	}
-	return (0);
-}
+// 	im = i;
+// 	jm = j;
+// 	if ((map_data->map[im + 1][jm] != 'E' && map_data->map[im + 1][jm] != 'P')
+// 	&& (map_data->map[im - 1][jm] != 'E' && map_data->map[im - 1][jm] != 'P')
+// 	&& (map_data->map[im][jm + 1] != 'E' && map_data->map[im][jm + 1] != 'P')
+// 	&& (map_data->map[im][jm - 1] != 'E' && map_data->map[im][jm - 1] != 'P')
+// 	)
+// 	{
+// 		if ((map_data->map[im + 1][jm] != '1'
+// 			&& map_data->map[im + 1][jm] != '1'))
+// 		{
+// 			mlx_image_to_window
+// 			(map_data->mlx, map_data->enemy_image_1,
+// 			jm * TILESIZE, im * TILESIZE);
+// 			mlx_set_instance_depth(&(map_data->enemy_image_1->instances[0]), 2);
+// 			return (1);
+// 		}
+// 	}
+// 	return (0);
+// }
 
 static void	draw_w_f(t_map *map_data, int i, int j, t_draw_counts *counts)
 {
-	static int	check;
+	// static int	check;
 
 	if (map_data->map[i][j] == '1')
 	{
@@ -55,8 +55,8 @@ static void	draw_w_f(t_map *map_data, int i, int j, t_draw_counts *counts)
 			(map_data->mlx, map_data->floor_image, j * TILESIZE, i * TILESIZE);
 		mlx_set_instance_depth
 			(&(map_data->floor_image->instances[(*counts).fl_count++]), 1);
-		if (check == 0)
-			check = draw_enemy(map_data, i, j);
+		// if (check == 0)
+		// 	check = draw_enemy(map_data, i, j);
 	}
 }
 

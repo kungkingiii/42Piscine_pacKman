@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 07:51:08 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/04/18 14:23:14 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:41:36 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ void	exit_routine(t_map *map_data)
 	mlx_delete_image(map_data->mlx, map_data->exit_image);
 	mlx_delete_image(map_data->mlx, map_data->floor_image);
 	mlx_delete_image(map_data->mlx, map_data->collectible_image);
-	mlx_delete_texture(map_data->wall_texture);
-	mlx_delete_texture(map_data->player_texture);
-	mlx_delete_texture(map_data->exit_texture);
-	mlx_delete_texture(map_data->floor_texture);
-	mlx_delete_texture(map_data->collectible_texture);
 	mlx_terminate(map_data->mlx);
 	free(map_data);
 	exit(EXIT_SUCCESS);

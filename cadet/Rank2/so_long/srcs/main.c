@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:05:26 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/04/18 13:34:17 by chongsen         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:26:05 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_hook(void *param)
 	t_map	*map_data;
 
 	map_data = (t_map *)param;
-	if (mlx_is_key_down(map_data->mlx, MLX_KEY_ESCAPE))
+	if (mlx_is_key_down(map_data->mlx, MLX_KEY_Q))
 		exit_routine(map_data);
 	else if (mlx_is_key_down(map_data->mlx, MLX_KEY_W))
 		handle_move(0, -1, map_data);
@@ -46,7 +46,7 @@ int32_t	main(int argc, char **argv)
 	}
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	map_data->mlx = mlx_init(TILESIZE * map_data->cols,
-			TILESIZE * map_data->rows, "so_long", true);
+			TILESIZE * map_data->rows, "solong", true);
 	init_textures_and_images(map_data);
 	draw_map(map_data);
 	mlx_loop_hook(map_data->mlx, ft_hook, map_data);
