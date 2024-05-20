@@ -12,7 +12,8 @@ SRC_FILES = main.c window.c
 SRC_PATHS = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 OBJ_DIR = obj
 OBJ = $(SRC_PATHS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd
+LFLAGS = -lX11 -lXext 
+# LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd
 
 all: $(OBJ_DIR) $(NAME)
 
@@ -26,7 +27,8 @@ $(LIBFT):
 	$(MAKE) -C $(LIB)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LFLAGS) -o $(NAME)
+	make -C mlx/
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) mlx/libmlx.a $(LFLAGS) -o $(NAME)
 
 
 clean:
