@@ -5,7 +5,7 @@ INC=%%%%
 INCLIB=$(INC)/../lib
 NAME= so_long
 
-LIB = lib
+LIB = ../lib
 LIBFT = $(LIB)/libftprintf.a
 
 SRC_DIR = src
@@ -21,14 +21,15 @@ all: $(OBJ_DIR) $(NAME)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 
+$(OBJ_DIR)/%.o: %.c 
 	$(CC) $(CFLAGS) -c $< -o $@
+# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 
+# 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	$(MAKE) -C $(LIB)
 
 $(NAME): $(OBJ) $(LIBFT)
-	make -C mlx/
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LFLAGS) -o $(NAME)
 
 
