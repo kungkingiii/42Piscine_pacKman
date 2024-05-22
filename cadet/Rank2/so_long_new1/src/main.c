@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:39:23 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/20 21:55:06 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/22 20:47:59 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,6 @@ int	main()
 {
 	int a;
 	int b;
-	void	*im1;
 	void	*img2;
 	// char *str = argv[0];
 	t_data data;

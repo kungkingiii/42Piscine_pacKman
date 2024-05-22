@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:39:23 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/20 21:50:04 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/23 00:08:26 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main()
 {
 	int a;
 	int b;
-	void	*img2;
+
 	// char *str = argv[0];
 	t_data data;
 
@@ -49,10 +49,10 @@ int	main()
 	data.mlx = mlx_init();
 	data.window = mlx_new_window(data.mlx, 640, 640, "so_long");
 
-	img2 = mlx_xpm_file_to_image(data.mlx,"open.xpm",&a,&b);
-	mlx_put_image_to_window(data.mlx,data.window,img2,10,10);
-	// data.img1 = mlx_xpm_file_to_image(data.mlx,"../textures/enemy.xpm",&a,&b);
-	// mlx_put_image_to_window(data.mlx,data.window,data.img1,64,64);
+	data.img2 = mlx_xpm_file_to_image(data.mlx,"../textures/player.xpm",&a,&b);
+	mlx_put_image_to_window(data.mlx,data.window,data.img2,10,10);
+	data.img1 = mlx_xpm_file_to_image(data.mlx,"../textures/enemy.xpm",&a,&b);
+	mlx_put_image_to_window(data.mlx,data.window,data.img1,64,64);
 	mlx_key_hook(data.window, key_hook, &data);
 	mlx_loop(data.mlx);
  
