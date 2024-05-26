@@ -1,5 +1,21 @@
 #include "../so_long.h"
 
+static void	free_map(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (data->map)
+	{
+		while (data->map[i])
+		{
+			free(data->map[i]);
+			i++;
+		}
+		free(data->map);
+	}
+}
+
 void detroy_all(t_data *data)
 {
     if (data->player)
@@ -22,4 +38,13 @@ void detroy_all(t_data *data)
 		free(data->mlx);
 	}
 	exit(1);
+}
+
+int	quit_game(t_data *data, int exit_code)
+{
+	if (!data)
+		return (0);
+	detroy_all(data);
+	free_map(data);
+	exit(exit_code);
 }
