@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:39:23 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/23 00:08:26 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/26 01:21:52 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,35 @@ int	key_hook(int keycode, t_data *data)
 }
 
 
-int	main()
+int	main(int argc, char **argv)
 {
-	int a;
-	int b;
-
-	// char *str = argv[0];
-	t_data data;
+	t_data *data;
 
 	
-	// if (argc != 2)
-	// {
-	// 	ft_printf("require 2 argument (Usage: ./solong /path-to-map)%s\n", str);
-	// 	return (1);
-	// }
-	data.mlx = mlx_init();
-	data.window = mlx_new_window(data.mlx, 640, 640, "so_long");
+	if (argc != 2)
+	{
+		ft_printf("require 2 argument (Usage: ./solong /path-to-map)%s\n",argv[1]);
+		return (1);
+	}
 
-	data.img2 = mlx_xpm_file_to_image(data.mlx,"../textures/player.xpm",&a,&b);
-	mlx_put_image_to_window(data.mlx,data.window,data.img2,10,10);
-	data.img1 = mlx_xpm_file_to_image(data.mlx,"../textures/enemy.xpm",&a,&b);
-	mlx_put_image_to_window(data.mlx,data.window,data.img1,64,64);
-	mlx_key_hook(data.window, key_hook, &data);
-	mlx_loop(data.mlx);
+	
+	data = handle_input(argv[1]);
+	if (data == NULL)
+	{
+		ft_printf("Error: can't create map\n");
+		return (1);
+	}
+	data->mlx = mlx_init();
+	data->window = mlx_new_window(data->mlx, WINSIZE * data->cols, WINSIZE * data->rows, "so_long");
+
+	init_image(data);
+	draw_map(data);
+	// data->player = mlx_xpm_file_to_image(data->mlx,"../textures/player.xpm",&a,&b);
+	// mlx_put_image_to_window(data->mlx,data->window,data->player,10,10);
+	// data->enemy = mlx_xpm_file_to_image(data->mlx,"../textures/enemy.xpm",&a,&b);
+	// mlx_put_image_to_window(data->mlx,data->window,data->enemy,64,64);
+	mlx_key_hook(data->window, key_hook, &data);
+	mlx_loop(data->mlx);
  
   // mlx_loop(mlx);
   //  if (!(mlx = mlx_init()))

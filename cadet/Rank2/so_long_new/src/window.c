@@ -2,13 +2,29 @@
 
 void detroy_all(t_data *data)
 {
-    if (data->img1)
+    if (data->player)
 	{
-			mlx_destroy_image(data->mlx, data->img1);
+			mlx_destroy_image(data->mlx, data->player);
 	}
-	if (data->img2)
+    if (data->wall)
 	{
-			mlx_destroy_image(data->mlx, data->img2);
+			mlx_destroy_image(data->mlx, data->wall);
+	}
+    if (data->floor)
+	{
+			mlx_destroy_image(data->mlx, data->floor);
+	}
+    if (data->exit)
+	{
+			mlx_destroy_image(data->mlx, data->exit);
+	}
+    if (data->collectible)
+	{
+			mlx_destroy_image(data->mlx, data->collectible);
+	}
+	if (data->enemy)
+	{
+			mlx_destroy_image(data->mlx, data->enemy);
 	}
 	if (data->window)
 	{
