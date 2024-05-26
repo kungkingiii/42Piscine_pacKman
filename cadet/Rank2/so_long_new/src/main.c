@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:39:23 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/26 01:21:52 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/26 14:08:09 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,12 @@ int	main(int argc, char **argv)
 	}
 	data->mlx = mlx_init();
 	data->window = mlx_new_window(data->mlx, WINSIZE * data->cols, WINSIZE * data->rows, "so_long");
-
+	if (data == NULL)
+	{
+		ft_printf("Error: can't open something wrong\n");
+		detroy_all(data);
+		return (1);
+	}
 	init_image(data);
 	draw_map(data);
 	// data->player = mlx_xpm_file_to_image(data->mlx,"../textures/player.xpm",&a,&b);
