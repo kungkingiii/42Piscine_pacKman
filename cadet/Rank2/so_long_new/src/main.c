@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:39:23 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/26 15:28:41 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/26 17:07:34 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,18 @@ int	key_hook(int key, t_data *data)
 {
 	if (key == ESC || key == KEY_X)
 		quit_game(data, 0);
-	// else if (key == W || key == UP)
-	// 	player_pos(game, false, -1);
-	// else if (key == A || key == LEFT)
-	// 	player_pos(game, true, -1);
-	// else if (key == S || key == DOWN)
-	// 	player_pos(game, false, 1);
-	// else if (key == D || key == RIGHT)
-	// 	player_pos(game, true, 1);
+	else if (key == W || key == UP)
+		handle_move(data, 0, -1);
 	return (EXIT_SUCCESS);
 }
 
+void	runningman(t_data *data)
+{
+	mlx_hook(data->window, 2, (1L << 0), key_hook, data);
+	mlx_hook(data->window, 17, (1L << 17), quit_game, data);
+	// draw_map(data);
+	// mlx_loop(data->mlx);
+}
 
 int	main(int argc, char **argv)
 {
@@ -70,8 +71,9 @@ int	main(int argc, char **argv)
 	// data->enemy = mlx_xpm_file_to_image(data->mlx,"../textures/enemy.xpm",&a,&b);
 	// mlx_put_image_to_window(data->mlx,data->window,data->enemy,64,64);
 	// mlx_key_hook(data->window, key_hook, &data);
-	mlx_hook(data->window, 2, (1L << 0), key_hook, data);
-	mlx_hook(data->window, 17, (1L << 17), quit_game, data);
+	// mlx_hook(data->window, 2, (1L << 0), key_hook, data);
+	// mlx_hook(data->window, 17, (1L << 17), quit_game, data);
+	runningman(data);
 	mlx_loop(data->mlx);
  
   // mlx_loop(mlx);

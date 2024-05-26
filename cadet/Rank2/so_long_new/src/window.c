@@ -14,6 +14,8 @@ static void	free_map(t_data *data)
 		}
 		free(data->map);
 	}
+	free(data->c_x);
+	free(data->c_y);
 }
 
 void detroy_all(t_data *data)
@@ -44,7 +46,8 @@ int	quit_game(t_data *data, int exit_code)
 {
 	if (!data)
 		return (0);
-	detroy_all(data);
 	free_map(data);
+	free(data);
+	detroy_all(data);
 	exit(exit_code);
 }

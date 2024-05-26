@@ -34,18 +34,21 @@ typedef struct	s_data {
 	void	*player;
 	void	*enemy;
 	void	*collectible;
+	int		pickcount;
 	void	*exit;
 	void	*floor;
 	void	*wall;
 	void	*mlx;
-	int				*c_x;
-	int				*c_y;
-	int				rows;
-	int				cols;
-	char			**map;
-	int				collectibles;
-	int				collected;
-	int				moves;
+	int		*c_x;
+	int		*c_y;
+	int		x;
+	int		y;
+	int		rows;
+	int		cols;
+	char	**map;
+	int		collectibles;
+	int		collected;
+	int		moves;
 	void	*window;
 }   t_data;
 
@@ -64,6 +67,7 @@ bool	check_path(char **map);
 void	init_image(t_data *data);
 void	draw_map(t_data *data);
 int		quit_game(t_data *data, int exit_code);
+void	handle_move(t_data *data, int col, int row);
 
 
 #endif

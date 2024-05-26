@@ -2,6 +2,8 @@
 
 static void	draw_w_f(t_data *data, int i, int j)
 {
+	// int x;
+	// int y;
 	if (data->map[i][j] == '1')
 	{
         mlx_put_image_to_window(data->mlx,data->window,data->wall,j * WINSIZE, i * WINSIZE);
@@ -19,6 +21,8 @@ static void	draw_p_e(t_data *data, int i, int j)
 	{
 		// mlx_put_image_to_window(data->mlx,data->window,data->floor,j * WINSIZE, i * WINSIZE);
 		mlx_put_image_to_window(data->mlx,data->window,data->player,j * WINSIZE, i * WINSIZE);
+		data->x = j;
+		data->y = i;
 	}
 	if (data->map[i][j] == 'E')
 	{
@@ -33,6 +37,7 @@ static void	draw_c(t_data *data, int i, int j)
 	{
 		// mlx_put_image_to_window(data->mlx,data->window,data->floor,j * WINSIZE, i * WINSIZE);
 		mlx_put_image_to_window(data->mlx,data->window,data->collectible,j * WINSIZE, i * WINSIZE);
+		data->pickcount++;
 	}
 }
 
