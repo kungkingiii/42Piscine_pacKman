@@ -1,5 +1,16 @@
-#include "../so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/28 01:03:28 by packmanich        #+#    #+#             */
+/*   Updated: 2024/05/28 01:13:12 by packmanich       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../so_long.h"
 
 static void	make_collectible_indexes(t_data **data, char **map)
 {
@@ -65,6 +76,7 @@ t_data	*make_map(char *buffer)
 	if (data == NULL)
 	{
 		free(buffer);
+		free(data);
 		exit(1);
 	}
 	map = ft_split(buffer, '\n');
@@ -81,7 +93,6 @@ t_data	*make_map(char *buffer)
 	data->collected = 0;
 	return (data);
 }
-
 
 static void	check_validity(char *buffer)
 {

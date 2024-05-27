@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/28 01:15:39 by packmanich        #+#    #+#             */
+/*   Updated: 2024/05/28 01:15:40 by packmanich       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -29,16 +41,16 @@
 # define M_SCR_U 4
 # define M_SCR_D 5
 
-typedef struct	s_data {
-
+typedef struct s_data
+{
 	void	*player;
 	void	*enemy;
 	void	*collectible;
-	int		pickcount;
 	void	*exit;
 	void	*floor;
 	void	*wall;
 	void	*mlx;
+	int		pickcount;
 	int		*c_x;
 	int		*c_y;
 	int		x;
@@ -50,16 +62,9 @@ typedef struct	s_data {
 	int		collected;
 	int		moves;
 	void	*window;
-}   t_data;
+}		t_data;
 
-// typedef struct s_map_counts
-// {
-// 	int			fl_count;
-// 	int			wall_count;
-// 	int			col_count;
-// }				t_map_counts;
-
-void    detroy_all(t_data *data);
+void	detroy_all(t_data *data);
 size_t	ft_c_arr_len(char **array);
 t_data	*handle_input(char *filepath);
 bool	check_map(char **map);
@@ -68,6 +73,5 @@ void	init_image(t_data *data);
 void	draw_map(t_data *data);
 int		quit_game(t_data *data, int exit_code);
 void	handle_move(t_data *data, int col, int row);
-
 
 #endif

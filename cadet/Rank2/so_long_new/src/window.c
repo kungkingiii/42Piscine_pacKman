@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/28 01:03:49 by packmanich        #+#    #+#             */
+/*   Updated: 2024/05/28 01:13:45 by packmanich       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
 static void	free_map(t_data *data)
@@ -12,26 +24,26 @@ static void	free_map(t_data *data)
 			free(data->map[i]);
 			i++;
 		}
+		free(data->c_x);
+		free(data->c_y);
 		free(data->map);
 	}
-	free(data->c_x);
-	free(data->c_y);
 }
 
-void detroy_all(t_data *data)
+void	detroy_all(t_data *data)
 {
-    if (data->player)
-			mlx_destroy_image(data->mlx, data->player);
-    if (data->wall)
-			mlx_destroy_image(data->mlx, data->wall);
-    if (data->floor)
-			mlx_destroy_image(data->mlx, data->floor);
-    if (data->exit)
-			mlx_destroy_image(data->mlx, data->exit);
-    if (data->collectible)
-			mlx_destroy_image(data->mlx, data->collectible);
+	if (data->player)
+		mlx_destroy_image(data->mlx, data->player);
+	if (data->wall)
+		mlx_destroy_image(data->mlx, data->wall);
+	if (data->floor)
+		mlx_destroy_image(data->mlx, data->floor);
+	if (data->exit)
+		mlx_destroy_image(data->mlx, data->exit);
+	if (data->collectible)
+		mlx_destroy_image(data->mlx, data->collectible);
 	if (data->enemy)
-			mlx_destroy_image(data->mlx, data->enemy);
+		mlx_destroy_image(data->mlx, data->enemy);
 	if (data->window)
 		mlx_destroy_window(data->mlx, data->window);
 	if (data->mlx)
@@ -47,7 +59,7 @@ int	quit_game(t_data *data, int exit_code)
 	if (!data)
 		return (0);
 	free_map(data);
-	free(data);
 	detroy_all(data);
+	free(data);
 	exit(exit_code);
 }

@@ -6,20 +6,11 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:39:23 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/26 17:07:34 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/28 01:12:27 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-// int	key_hook(int keycode, t_data *data)
-// {
-// 	if(keycode == ESC)
-// 	{
-// 		quit_game(data, 1);
-// 	}
-// 	return (0);
-// }
 
 int	key_hook(int key, t_data *data)
 {
@@ -27,29 +18,32 @@ int	key_hook(int key, t_data *data)
 		quit_game(data, 0);
 	else if (key == W || key == UP)
 		handle_move(data, 0, -1);
+	else if (key == A || key == LEFT)
+		handle_move(data, -1, 0);
+	else if (key == S || key == DOWN)
+		handle_move(data, 0, 1);
+	else if (key == D || key == RIGHT)
+		handle_move(data, 1, 0);
 	return (EXIT_SUCCESS);
 }
 
-void	runningman(t_data *data)
+void	run_game(t_data *data)
 {
+	init_image(data);
+	draw_map(data);
 	mlx_hook(data->window, 2, (1L << 0), key_hook, data);
 	mlx_hook(data->window, 17, (1L << 17), quit_game, data);
-	// draw_map(data);
-	// mlx_loop(data->mlx);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	*data;
 
-	
 	if (argc != 2)
 	{
-		ft_printf("require 2 argument (Usage: ./solong /path-to-map)%s\n",argv[1]);
+		ft_printf("require 2 argument ./solong /path-to-map%s\n", argv[1]);
 		return (0);
 	}
-
-	
 	data = handle_input(argv[1]);
 	if (data == NULL)
 	{
@@ -57,31 +51,14 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	data->mlx = mlx_init();
-	data->window = mlx_new_window(data->mlx, WINSIZE * data->cols, WINSIZE * data->rows, "so_long");
+	data->window = mlx_new_window(data->mlx,
+			WINSIZE * data->cols, WINSIZE * data->rows, "so_long");
 	if (data == NULL)
 	{
 		ft_printf("Error: can't open something wrong\n");
-		detroy_all(data);
+		quit_game(data, 0);
 		return (0);
 	}
-	init_image(data);
-	draw_map(data);
-	// data->player = mlx_xpm_file_to_image(data->mlx,"../textures/player.xpm",&a,&b);
-	// mlx_put_image_to_window(data->mlx,data->window,data->player,10,10);
-	// data->enemy = mlx_xpm_file_to_image(data->mlx,"../textures/enemy.xpm",&a,&b);
-	// mlx_put_image_to_window(data->mlx,data->window,data->enemy,64,64);
-	// mlx_key_hook(data->window, key_hook, &data);
-	// mlx_hook(data->window, 2, (1L << 0), key_hook, data);
-	// mlx_hook(data->window, 17, (1L << 17), quit_game, data);
-	runningman(data);
+	run_game(data);
 	mlx_loop(data->mlx);
- 
-  // mlx_loop(mlx);
-  //  if (!(mlx = mlx_init()))
-  //   {
-  //     printf(" !! KO !!\n");
-  //     exit(1);
-  //   }
-	
-	
 }
