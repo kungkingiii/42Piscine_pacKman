@@ -6,65 +6,28 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 01:03:28 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/28 01:13:12 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/28 22:55:54 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static void	make_collectible_indexes(t_data **data, char **map)
+static void	count_map(t_data *data, char **map)
 {
 	int	i;
-	int	collec_pos;
 	int	j;
 
 	i = 0;
-	collec_pos = 0;
 	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'C')
-			{
-				(*data)->c_x[collec_pos] = j;
-				(*data)->c_y[collec_pos] = i;
-				collec_pos++;
-			}
 			j++;
 		}
 		i++;
 	}
-	(*data)->rows = i;
-}
-
-static void	make_collectibles(t_data **data, char *buffer, char **map)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	(*data)->collectibles = 0;
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-		{
-			if (map[i][j] == 'C')
-				(*data)->collectibles++;
-		}
-	}
-	(*data)->c_x = malloc(sizeof(int) * (*data)->collectibles);
-	(*data)->c_y = malloc(sizeof(int) * (*data)->collectibles);
-	if ((*data)->c_x == NULL || (*data)->c_y == NULL)
-	{
-		free((*data)->c_x);
-		free((*data)->c_y);
-		free(buffer);
-		free(*data);
-		exit(1);
-	}
-	make_collectible_indexes(data, map);
+	data->rows = i;
 }
 
 t_data	*make_map(char *buffer)
@@ -89,12 +52,11 @@ t_data	*make_map(char *buffer)
 	data->map = map;
 	data->cols = ft_strlen(map[0]);
 	data->moves = 0;
-	make_collectibles(&data, buffer, map);
-	data->collected = 0;
+	count_map(data, map);
 	return (data);
 }
 
-static void	check_validity(char *buffer)
+static void	check_map_file(char *buffer)
 {
 	char	**map;
 	int		map_len;
@@ -138,7 +100,7 @@ t_data	*handle_input(char *filepath)
 		exit(1);
 	read_bytes = read(fd, buffer, 100000);
 	buffer[read_bytes] = '\0';
-	check_validity(buffer);
+	check_map_file(buffer);
 	data = make_map(buffer);
 	free(buffer);
 	close(fd);

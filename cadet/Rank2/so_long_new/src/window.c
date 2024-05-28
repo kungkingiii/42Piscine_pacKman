@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 01:03:49 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/28 21:35:27 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/28 22:57:45 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static void	free_map(t_data *data)
 			free(data->map[i]);
 			i++;
 		}
-		free(data->c_x);
-		free(data->c_y);
 		free(data->map);
 	}
 }
@@ -51,6 +49,7 @@ void	detroy_all(t_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
+	free(data);
 	exit(1);
 }
 
@@ -60,6 +59,5 @@ int	quit_game(t_data *data, int exit_code)
 		return (0);
 	free_map(data);
 	detroy_all(data);
-	free(data);
 	exit(exit_code);
 }

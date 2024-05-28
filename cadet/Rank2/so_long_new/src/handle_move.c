@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 01:03:06 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/28 21:40:58 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/28 22:06:31 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	player_move(t_data *data, int i, int j)
 			WINSIZE * j, WINSIZE * i);
 	}
 	data->x = j;
-	data->y = i;	
+	data->y = i;
 	ft_printf("\rmove count: %i", data->moves);
 }
 

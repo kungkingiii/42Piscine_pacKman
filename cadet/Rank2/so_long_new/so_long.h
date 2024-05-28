@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 01:15:39 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/28 21:33:24 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/28 22:48:58 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,11 @@ typedef struct s_data
 	void	*wall;
 	void	*mlx;
 	int		pickcount;
-	int		*c_x;
-	int		*c_y;
 	int		x;
 	int		y;
 	int		rows;
 	int		cols;
 	char	**map;
-	int		collectibles;
-	int		collected;
 	int		moves;
 	void	*window;
 }		t_data;
