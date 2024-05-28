@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 01:03:06 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/28 01:07:52 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/28 21:40:58 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 static void	player_move(t_data *data, int i, int j)
 {
 	data->moves += 1;
-	mlx_put_image_to_window(data->mlx, data->window, data->player,
-		WINSIZE * j, WINSIZE * i);
+	if (data->map[i][j] == 'E')
+	{
+		mlx_put_image_to_window(
+			data->mlx, data->window, data->exitp,
+			WINSIZE * j, WINSIZE * i);
+	}
+	else
+	{
+		mlx_put_image_to_window(data->mlx, data->window, data->player,
+			WINSIZE * j, WINSIZE * i);
+	}
 	data->x = j;
-	data->y = i;
+	data->y = i;	
 	ft_printf("\rmove count: %i", data->moves);
 }
 

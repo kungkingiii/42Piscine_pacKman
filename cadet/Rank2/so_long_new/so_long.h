@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 01:15:39 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/28 01:15:40 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/28 21:33:24 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,11 @@
 # define ESC 65307
 # define SP 32
 # define KEY_X 53
-# define M_CLK_L 1
-# define M_CLK_R 3
-# define M_CLK_M 2
-# define M_SCR_U 4
-# define M_SCR_D 5
 
 typedef struct s_data
 {
 	void	*player;
-	void	*enemy;
+	void	*exitp;
 	void	*collectible;
 	void	*exit;
 	void	*floor;
