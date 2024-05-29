@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 01:03:06 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/28 22:06:31 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/28 23:40:47 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static void	player_move(t_data *data, int i, int j)
 {
+	char	*s;
+	char	*str;
+
 	data->moves += 1;
 	if (data->map[i][j] == 'E')
 	{
@@ -28,6 +31,11 @@ static void	player_move(t_data *data, int i, int j)
 	}
 	data->x = j;
 	data->y = i;
+	s = ft_itoa(data->moves);
+	str = ft_strjoin("move :", s);
+	mlx_string_put(data->mlx, data->window, 20, 20, 0x000000, str);
+	free(s);
+	free(str);
 	ft_printf("\rmove count: %i", data->moves);
 }
 
