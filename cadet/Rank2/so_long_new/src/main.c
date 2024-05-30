@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:39:23 by packmanich        #+#    #+#             */
-/*   Updated: 2024/05/28 23:38:29 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/05/30 14:14:04 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_printf("require 2 argument ./solong /path-to-map%s\n", argv[1]);
+		ft_printf("require 2 argument ./solong /path-to-map\n");
 		return (0);
 	}
 	data = handle_input(argv[1]);
