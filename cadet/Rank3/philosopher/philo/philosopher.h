@@ -6,12 +6,17 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 22:32:32 by packmanich        #+#    #+#             */
-/*   Updated: 2024/07/20 22:48:44 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/07/21 22:33:05 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <pthread.h>
+#ifndef PHILOSOPHER_H
+# define PHILOSOPHER_H
+
+# include <stdio.h>
+# include <pthread.h>
+
+# define PHILO_MAX 200
 
 typedef struct s_philo
 {
@@ -23,4 +28,16 @@ typedef struct s_philo
 	int			times_need_eat;
 }	t_philo;
 
-int	ft_atoi(const char *str);
+typedef struct s_mutex
+{
+	int				dead_flag;
+	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	write_lock;
+	t_philo			t_program;
+}	t_mutex;
+
+int		ft_atoi(const char *str);
+void	init_program(t_mutex *mutex, t_philo *philos);
+
+#endif
