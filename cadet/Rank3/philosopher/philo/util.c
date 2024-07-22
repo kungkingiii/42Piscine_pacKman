@@ -6,9 +6,11 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 22:48:02 by packmanich        #+#    #+#             */
-/*   Updated: 2024/07/20 22:48:04 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/07/22 13:28:26 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "./philosopher.h"
 
 static int	ft_count(char *str, int i, int count, int toi)
 {
@@ -65,4 +67,23 @@ int	ft_atoi(const char *str)
 			return (toi);
 	}
 	return (toi);
+}
+
+int	ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < milliseconds)
+		usleep(500);
+	return (0);
+}
+
+size_t	get_current_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		printf("error: can't get time with some reason\n");
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
