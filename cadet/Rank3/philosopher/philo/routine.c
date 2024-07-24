@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:32:59 by packmanich        #+#    #+#             */
-/*   Updated: 2024/07/22 23:07:06 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/07/24 10:29:27 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	think_action(t_philo *philo)
 		printf("%zu %d is thinking\n", think_time, philo->id);
 }
 
-void	philo_routine(void *one_philo)
+void	*philo_routine(void *one_philo)
 {
 	t_philo	*philo;
 	int		i;
@@ -62,4 +62,5 @@ void	philo_routine(void *one_philo)
 		think_action(philo);
 		i++;
 	}
+	return (0);
 }

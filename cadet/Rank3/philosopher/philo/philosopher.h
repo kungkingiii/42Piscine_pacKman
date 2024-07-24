@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 22:32:32 by packmanich        #+#    #+#             */
-/*   Updated: 2024/07/22 22:21:51 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/07/24 09:59:49 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void	init_philos(t_philo *philos, t_mutex *mutex,
 			pthread_mutex_t *forks, char **argv);
 size_t	get_current_time(void);
 int		create_thread(t_mutex *mutex, pthread_mutex_t *forks);
-void	philo_routine(void *one_philo);
+void	*philo_routine(void *one_philo);
 
 #endif

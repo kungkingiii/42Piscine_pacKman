@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:10:19 by packmanich        #+#    #+#             */
-/*   Updated: 2024/07/22 22:22:55 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/07/24 10:26:05 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,21 @@
 
 int	create_thread(t_mutex *mutex, pthread_mutex_t *forks)
 {
-	int	i;
+	int			i;
+	pthread_t	philo_thread;
 
 	i = 0;
 	while (i < mutex->philos[0].num_of_philos)
 	{
-		philo_routine(&mutex->philos[i]);
+		pthread_create(&mutex->philos[i].thread, NULL,
+			&philo_routine, &mutex->philos[i]);
 		i++;
 	}
+	i = 0;
+	while (i < mutex->philos[0].num_of_philos)
+		pthread_join(mutex->philos[i].thread, NULL);
+	{
+		i++;
+	}
+	return (0);
 }
