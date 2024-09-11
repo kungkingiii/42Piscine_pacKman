@@ -6,9 +6,11 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:36:36 by packmanich        #+#    #+#             */
-/*   Updated: 2024/07/22 13:36:44 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/08/28 22:26:33 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "./philosopher.h"
 
 void	print_message(char *str, t_philo *philo, int id)
 {
