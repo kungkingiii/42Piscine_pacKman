@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2024/09/11 23:49:35 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/09/12 22:44:06 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 
 # define PHILO_MAX 300
+# define TIME_MIN 60
 
 typedef struct s_philo
 {
