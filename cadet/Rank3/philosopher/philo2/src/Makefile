@@ -6,7 +6,7 @@
 #    By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 14:19:21 by druina            #+#    #+#              #
-#    Updated: 2024/07/21 21:54:56 by packmanich       ###   ########.fr        #
+#    Updated: 2024/09/12 23:15:39 by packmanich       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME = philo
 
 SRC = main.c utils.c init.c threads.c monitor.c routine_actions.c
 
-MANPATH = $(addprefix ./src/, $(SRC))
+MANPATH = $(addprefix ./, $(SRC))
 
 FLAGS = -O3 -pthread
 
-HEADER = ./src/philo.h
+HEADER = ./philo.h
 
 # SANITIZER = -fsanitize=thread
 

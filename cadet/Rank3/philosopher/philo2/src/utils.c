@@ -6,7 +6,7 @@
 /*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 09:17:55 by druina            #+#    #+#             */
-/*   Updated: 2024/09/11 23:50:10 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/09/12 23:21:26 by packmanich       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void	destory_all(char *str, t_program *program, pthread_mutex_t *forks)
 	i = 0;
 	if (str)
 	{
-		write(2, str, ft_strlen(str));
-		write(2, "\n", 1);
+		printf("%s \n", str);
 	}
 	pthread_mutex_destroy(&program->write_lock);
 	pthread_mutex_destroy(&program->meal_lock);
@@ -83,6 +82,6 @@ size_t	get_current_time(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
+		printf("error: gettimeofday() error\n");
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
