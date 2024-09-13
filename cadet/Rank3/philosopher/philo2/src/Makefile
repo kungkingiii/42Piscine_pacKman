@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+         #
+#    By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 14:19:21 by druina            #+#    #+#              #
-#    Updated: 2024/09/12 23:15:39 by packmanich       ###   ########.fr        #
+#    Updated: 2024/09/13 13:23:30 by chongsen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,9 @@ SRC = main.c utils.c init.c threads.c monitor.c routine_actions.c
 
 MANPATH = $(addprefix ./, $(SRC))
 
-FLAGS = -O3 -pthread
+FLAGS = -Wall -Wextra -Werror -O3 -pthread
 
 HEADER = ./philo.h
-
-# SANITIZER = -fsanitize=thread
 
 .PHONY: all clean fclean re debug
 

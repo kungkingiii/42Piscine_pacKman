@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:23:28 by druina            #+#    #+#             */
-/*   Updated: 2024/09/12 22:56:21 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/09/13 17:08:24 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 		return (printf("error: argument should be 4 or 5 \n"));
-	if (check_valid_args(argv) == 1)
+	if (check_valid_args(argv))
 		return (1);
 	init_program(&program, philos);
 	init_forks(forks, ft_atoi(argv[1]));

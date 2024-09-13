@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: packmanich <packmanich@student.42.fr>      +#+  +:+       +#+        */
+/*   By: chongsen <chongsen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2024/09/12 22:44:06 by packmanich       ###   ########.fr       */
+/*   Updated: 2024/09/13 14:49:03 by chongsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define PHILO_MAX 300
-# define TIME_MIN 60
+# define PHILO_MAX 200
+# define TIME_MIN 6
 
 typedef struct s_philo
 {
